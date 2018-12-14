@@ -21,10 +21,11 @@ app.use('/api/customers', router); //api root
 
 //root message
 app.post('/', function(req, res) {
-  res.json({ message: 'API Root!' });
+  res.json({ message: 'BPMS API Root!' });
 });
-app.post('/', function(req, res) {
-  res.json({ message: 'API Root!' });
+app.get('/', function(req, res) {
+  res.json({ message: 'BPMS API Root!' }
+  );
 });
 
 
