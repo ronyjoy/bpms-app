@@ -23,6 +23,9 @@ app.use('/api/customers', router); //api root
 app.post('/', function(req, res) {
   res.json({ message: 'API Root!' });
 });
+app.post('/', function(req, res) {
+  res.json({ message: 'API Root!' });
+});
 
 
 
