@@ -1,0 +1,19 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "entry"
+      }
+    ]
+  ],
+  "plugins": [
+    "transform-class-properties",
+    "transform-react-jsx",
+    "transform-object-rest-spread",
+    ["module-resolver", {
+      "root": ["./src"],
+    }],
+    ["import-rename", {"^(.*)\\.jsx$": "$1"}]
+  ]
+}
