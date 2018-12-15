@@ -4,6 +4,17 @@ const keys = require('../config/keys');
 const mongoose = require('mongoose')
 const User = mongoose.model('users');
 
+//setting the user to the cookie
+passport.serializeUser((user,done)=>{
+    done(null,user.id);
+});
+//getting the user from the cookie
+passport.deserializeUser((id,done)=>{
+    User.findById(id)
+    .then(user => {
+        done(null,user);
+    })
+});
 //google auth
 passport.use(new GoogleStrategy({
     clientID: keys.googleClientID,
@@ -15,6 +26,7 @@ passport.use(new GoogleStrategy({
         if (existingUser) {
             done(null, existingUser);
         } else {
+            //create user in the database
             new User({ googleId: profile.id, name: profile.name.givenName })
                 .save()
                 .then(user => done(null, user));

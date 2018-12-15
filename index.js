@@ -1,12 +1,28 @@
+//express handles the req from the browser
 const express = require('express');
+const cookieSession = require('cookie-session');
 require('./services/mongo');
 require('./services/passport');
 const PORT = process.env.PORT || 5000;
 require('./routes/customer');
 require('./routes/authRoutes');
+const keys = require('./config/keys');
+const passport = require('passport');
 
 const app = express();
-app.listen(PORT);
+//express middleware
+app.use(
+  cookieSession({
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    //adding encription key to encript the cookie 
+    keys: [keys.cookieKey]
+    
+  }
+  ));
+  
+//express middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 require('./routes/authRoutes')(app);
 require('./routes/customer')(app)
@@ -23,8 +39,5 @@ app.get('/', function (req, res) {
   res.json({ message: 'BPMS API Root!' }
   );
 });
-
-
-
-
-module.exports = app;
+//listen a port
+app.listen(PORT);

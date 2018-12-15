@@ -9,7 +9,7 @@ node_modules
 # production
 /build
 /dist
-keys.js
+dev.js
 
 # misc
 .DS_Store
