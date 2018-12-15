@@ -14,6 +14,6 @@ var customerSchema = new Schema({
   rank:Number
 });
 
-var Customer = mongoose.model('Customer', customerSchema);
+var Customer = mongoose.model('customer', customerSchema);
 
 module.exports = Customer;

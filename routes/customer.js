@@ -1,8 +1,8 @@
-var Customer = require('../models/CustomerModel.js');
+var Customer = require('../models/customer');
 
 
 
-var customerApiRouter = function (app) {
+module.exports = (app) => {
 
   //get all customers
   app.get('/api/customer', function (req, res) {
@@ -35,7 +35,6 @@ var customerApiRouter = function (app) {
       res.json({ message: 'customer saved!' });
     });
   });
-}
+};
 
-module.exports = customerApiRouter;
 
