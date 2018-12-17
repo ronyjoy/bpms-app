@@ -53,7 +53,6 @@
   },
   "optionalDependencies": {
     "babel-eslint": "^9.0.0",
-    "eslint": "^5.6.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.2",
     "eslint-plugin-react": "^7.10.0",
