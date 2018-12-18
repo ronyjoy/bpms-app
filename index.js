@@ -16,7 +16,7 @@ app.use(
     maxAge: 30 * 24 * 60 * 60 * 1000,
     //adding encription key to encript the cookie 
     keys: [keys.cookieKey]
-    
+     
   }
   ));
   
