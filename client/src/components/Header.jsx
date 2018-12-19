@@ -13,8 +13,6 @@ class Header extends Component {
     }
 
     renderContent() {
-        console.log("test");
-        console.log(this.props.auth);
         switch (this.props.auth) {
             case null:
                 return;
@@ -83,10 +81,9 @@ class Header extends Component {
                             <ul className="left">
                                 <li>
                                     <h1 className="logo-wrapper">
-                                        <a href="index.html" className="brand-logo darken-1">
-                                            <img src={require('../assets/images/logo/materialize-logo.png')} alt="materialize logo" />
+                                        <Link to={this.props.auth ? "/dashboard" : "/"} className="brand-logo darken-1">
                                             <span className="logo-text hide-on-med-and-down">BPMS</span>
-                                        </a>
+                                        </Link>
                                     </h1>
                                 </li>
                             </ul>

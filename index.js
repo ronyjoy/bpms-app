@@ -16,10 +16,10 @@ app.use(
     maxAge: 30 * 24 * 60 * 60 * 1000,
     //adding encription key to encript the cookie 
     keys: [keys.cookieKey]
-     
+
   }
   ));
-  
+
 //express middleware
 app.use(passport.initialize());
 app.use(passport.session());
@@ -39,5 +39,14 @@ app.get('/', function (req, res) {
   res.json({ message: 'BPMS API Root!' }
   );
 });
+
+if (process.env.NODE_ENV) {
+  app.use(express.static('client/build'));
+  const path = require('path');
+  app.get('*', (req, res) => {
+    //all unknow url to react side
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 //listen a port
 app.listen(PORT);

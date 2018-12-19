@@ -3,8 +3,8 @@ import { BrowserRouter, Router, Route, Switch } from "react-router-dom";
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import Header from "./Header"
-//const Header = () => <h2>Header</h2>;
-const Dashboard = () => <h2>Dashboard</h2>;
+import Dashboard from './Dashboard'
+import Footer from './Footer'
 const SurveyNew = () => <h2>SurveyNew</h2>;
 const Landing = () => <h2>Landing</h2>;
 class App extends Component {
@@ -20,9 +20,9 @@ class App extends Component {
                 <BrowserRouter>
                     <div>
                         <Header></Header>
-                        <Route exact path="/" component={Landing} />
+                        <Route exact path="/" component={Dashboard} />
                         <Route exact path="/dashboard" component={Dashboard} />
-                        <Route exact path="/surveys/new" component={SurveyNew} />
+
                     </div>
                 </BrowserRouter>
             </div>
