@@ -16,7 +16,7 @@ class Header extends Component {
                             </div>
                             <div className="col col s8 m8 l8">
 
-                                <a className="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" href="#" data-activates="profile-dropdown-nav">John Doe<i className="mdi-navigation-arrow-drop-down right"></i></a>
+                                <a className="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" href="#" data-activates="profile-dropdown-nav">{this.props.auth.name}<i className="mdi-navigation-arrow-drop-down right"></i></a>
                                 <p className="user-roal">Administrator</p>
                             </div>
                         </div>
@@ -24,58 +24,37 @@ class Header extends Component {
                     <li className="no-padding">
                         <ul className="collapsible" data-collapsible="accordion">
                             <li className="bold">
-                                <a href="index.html" className="waves-effect waves-cyan">
-                                    <i className="material-icons">pie_chart_outlined</i>
-                                    <span className="nav-text">Dashboard</span>
+                                <a href="/customer" className="waves-effect waves-cyan">
+                                    <i className="material-icons">tag_faces</i>
+                                    <span className="nav-text">Customer Management</span>
                                 </a>
                             </li>
                             <li className="bold">
-                                <a href="cards-basic.html" className="waves-effect waves-cyan">
-                                    <i className="material-icons">cast</i>
-                                    <span className="nav-text">Cards</span>
-                                </a>
-                            </li>
-                            <li className="bold">
-                                <a href="ui-basic-buttons.html" className="waves-effect waves-cyan">
-                                    <i className="material-icons">insert_link</i>
-                                    <span className="nav-text">Buttons</span>
-                                </a>
-                            </li>
-                            <li className="bold">
-                                <a href="form-layouts.html" className="waves-effect waves-cyan">
-                                    <i className="material-icons">format_color_text</i>
-                                    <span className="nav-text">Forms</span>
-                                </a>
-                            </li>
-                            <li className="bold">
-                                <a href="css-typography.html" className="waves-effect waves-cyan">
-                                    <i className="material-icons">format_size</i>
-                                    <span className="nav-text">Typography</span>
-                                </a>
-                            </li>
-                            <li className="bold">
-                                <a href="css-color.html" className="waves-effect waves-cyan">
-                                    <i className="material-icons">invert_colors</i>
-                                    <span className="nav-text">Color</span>
-                                </a>
-                            </li>
-                            <li className="bold">
-                                <a href="table-basic.html" className="waves-effect waves-cyan">
-                                    <i className="material-icons">border_all</i>
-                                    <span className="nav-text">Table</span>
+                                <a href="ui-icons.html" className="waves-effect waves-cyan">
+                                    <i className="material-icons">record_voice_over</i>
+                                    <span className="nav-text">Enquiry Management</span>
                                 </a>
                             </li>
                             <li className="bold">
                                 <a href="ui-icons.html" className="waves-effect waves-cyan">
                                     <i className="material-icons">lightbulb_outline</i>
-                                    <span className="nav-text">Icons</span>
+                                    <span className="nav-text">Quote Management</span>
                                 </a>
                             </li>
-                            <li>
-                                <a className="btn waves-effect waves-light gradient-45deg-red-pink" href="https://pixinvent.com/materialize-material-design-admin-template/landing/" target="_blank">
-                                    <i className="material-icons white-text">file_upload</i>Upgrade to Pro!
-                  </a>
+                            <li className="bold">
+                                <a href="ui-icons.html" className="waves-effect waves-cyan">
+                                    <i className="material-icons">lightbulb_outline</i>
+                                    <span className="nav-text">Project Management</span>
+                                </a>
                             </li>
+                            <li className="bold">
+                                <a href="ui-icons.html" className="waves-effect waves-cyan">
+                                    <i className="material-icons">lightbulb_outline</i>
+                                    <span className="nav-text">Logout</span>
+                                </a>
+                            </li>
+
+
                         </ul>
                     </li>
                 </ul>

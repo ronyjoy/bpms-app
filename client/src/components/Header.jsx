@@ -19,9 +19,7 @@ class Header extends Component {
             case false:
                 return [(<ul className="right hide-on-med-and-down"><li>
                     <a href="/auth/google" className="waves-effect waves-block waves-light profile-button" data-activates="profile-dropdown">
-                        <span > Login
-                    <i></i>
-                        </span>
+                        <i className="material-icons">fingerprint</i>
                     </a>
                 </li>
                     <li>
@@ -58,9 +56,7 @@ class Header extends Component {
                         </li>
                         <li>
                             <a href="/api/logout" className="waves-effect waves-block waves-light profile-button" data-activates="profile-dropdown">
-                                <span> Logout
-                                <i></i>
-                                </span>
+                                <i className="material-icons">clear</i>
                             </a>
                         </li>
                         <li>
