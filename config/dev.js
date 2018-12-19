@@ -4,4 +4,8 @@ module.exports = {
     googleClientSecret:'yZ5v7ugeWqai35Zh5TOuN4GM',
     mongoURI : 'mongodb://bpms:Tenergy_80@ds241578.mlab.com:41578/bpms',
     cookieKey : 'ouhoneuho890g23ypsnttnbdxhtcndrlgaodeucroheunho-lieljbxsaehduigrlasoeuhsnthosehud'
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 6c278fb970ffde531a34a2f3d72587f76e832871
