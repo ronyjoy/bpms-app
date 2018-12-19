@@ -1,9 +1,13 @@
-import 'materialize-css/dist/css/materialize.min.css'
+import 'materialize-css/dist/css/materialize.min.css';
+import './assets/vendors/perfect-scrollbar/perfect-scrollbar.css';
+import './assets/vendors/flag-icon/css/flag-icon.min.css';
+import './assets/css/style.css';
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import App from "./components/App.js";
+
 import reducers from './reducers';
 import reduxThunk from 'redux-thunk';
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));

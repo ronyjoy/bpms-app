@@ -26,7 +26,8 @@
     "mongoose": "^5.4.0",
     "morgan": "~1.9.1",
     "passport": "^0.4.0",
-    "passport-google-oauth20": "^1.0.0"
+    "passport-google-oauth20": "^1.0.0",
+    "react-meta-tags": "^0.7.3"
   },
   "devDependencies": {
     "nodemon": "^1.18.9"
