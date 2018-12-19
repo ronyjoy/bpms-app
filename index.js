@@ -27,19 +27,6 @@ app.use(passport.session());
 require('./routes/authRoutes')(app);
 require('./routes/customer')(app)
 
-
-
-
-//root message - post
-app.post('/', function (req, res) {
-  res.json({ message: 'BPMS API Root!' });
-});
-//root message - get
-app.get('/', function (req, res) {
-  res.json({ message: 'BPMS API Root!' }
-  );
-});
-
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
   const path = require('path');
