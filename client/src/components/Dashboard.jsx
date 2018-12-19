@@ -15,29 +15,7 @@ class Header extends Component {
                                 <img src="images/avatar/avatar-7.png" alt="" className="circle responsive-img valign profile-image cyan" />
                             </div>
                             <div className="col col s8 m8 l8">
-                                <ul id="profile-dropdown-nav" className="dropdown-content">
-                                    <li>
-                                        <a href="#" className="grey-text text-darken-1">
-                                            <i className="material-icons">face</i> Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="grey-text text-darken-1">
-                                            <i className="material-icons">settings</i> Settings</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="grey-text text-darken-1">
-                                            <i className="material-icons">live_help</i> Help</a>
-                                    </li>
-                                    <li className="divider"></li>
-                                    <li>
-                                        <a href="#" className="grey-text text-darken-1">
-                                            <i className="material-icons">lock_outline</i> Lock</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="grey-text text-darken-1">
-                                            <i className="material-icons">keyboard_tab</i> Logout</a>
-                                    </li>
-                                </ul>
+
                                 <a className="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" href="#" data-activates="profile-dropdown-nav">John Doe<i className="mdi-navigation-arrow-drop-down right"></i></a>
                                 <p className="user-roal">Administrator</p>
                             </div>
