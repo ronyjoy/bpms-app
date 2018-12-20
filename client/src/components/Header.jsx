@@ -31,41 +31,43 @@ class Header extends Component {
                 </ul>);
             default:
                 return (
-                    this.renderSearchBar(),
-                    <ul className="right hide-on-med-and-down">
+                    <div>
+                        {this.renderSearchBar()}
+                        <ul className="right hide-on-med-and-down">
 
 
-                        <li>
-                            <a href="javascript:void(0);" className="waves-effect waves-block waves-light notification-button" data-activates="notifications-dropdown">
-                                <i className="material-icons">notifications_none
+                            <li>
+                                <a href="javascript:void(0);" className="waves-effect waves-block waves-light notification-button" data-activates="notifications-dropdown">
+                                    <i className="material-icons">notifications_none
           <small className="notification-badge pink accent-2">5</small>
-                                </i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" className="waves-effect waves-block waves-light profile-button" data-activates="profile-dropdown">
-                                {this.props.auth.name}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" className="waves-effect waves-block waves-light profile-button" data-activates="profile-dropdown">
-                                <span className="avatar-status avatar-online">
-                                    <img src={this.props.auth.image} alt=" avatar" />
-                                    <i></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/api/logout" className="waves-effect waves-block waves-light profile-button" data-activates="profile-dropdown">
-                                <i className="material-icons">clear</i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" data-activates="chat-out" className="waves-effect waves-block waves-light chat-collapse">
-                                <i className="material-icons">format_indent_increase</i>
-                            </a>
-                        </li>
-                    </ul>
+                                    </i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" className="waves-effect waves-block waves-light profile-button" data-activates="profile-dropdown">
+                                    {this.props.auth.name}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" className="waves-effect waves-block waves-light profile-button" data-activates="profile-dropdown">
+                                    <span className="avatar-status avatar-online">
+                                        <img src={this.props.auth.image} alt=" avatar" />
+                                        <i></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/api/logout" className="waves-effect waves-block waves-light profile-button" data-activates="profile-dropdown">
+                                    <i className="material-icons">clear</i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" data-activates="chat-out" className="waves-effect waves-block waves-light chat-collapse">
+                                    <i className="material-icons">format_indent_increase</i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 );
         }
     }
@@ -79,7 +81,8 @@ class Header extends Component {
                                 <li>
                                     <h1 className="logo-wrapper">
                                         <Link to={this.props.auth ? "/dashboard" : "/"} className="brand-logo darken-1">
-                                            <span className="logo-text hide-on-med-and-down">BPMS</span>
+                                            <img src={require('../assets/images/logo/logo.png')} alt="logo"></img>
+                                            < span className="logo-text hide-on-med-and-down" > BPMS</span>
                                         </Link>
                                     </h1>
                                 </li>

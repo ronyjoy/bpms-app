@@ -29,25 +29,25 @@ class Header extends Component {
                                 </a>
                             </li>
                             <li className="bold">
-                                <a href="ui-icons.html" className="waves-effect waves-cyan">
+                                <a href="/ems" className="waves-effect waves-cyan">
                                     <i className="material-icons">phone</i>
                                     <span className="nav-text">Enquiry Management</span>
                                 </a>
                             </li>
                             <li className="bold">
-                                <a href="ui-icons.html" className="waves-effect waves-cyan">
+                                <a href="/qm" className="waves-effect waves-cyan">
                                     <i className="material-icons">monetization_on</i>
                                     <span className="nav-text">Quote Management</span>
                                 </a>
                             </li>
                             <li className="bold">
-                                <a href="ui-icons.html" className="waves-effect waves-cyan">
+                                <a href="/pm" className="waves-effect waves-cyan">
                                     <i className="material-icons">directions_run</i>
                                     <span className="nav-text">Project Management</span>
                                 </a>
                             </li>
                             <li className="bold">
-                                <a href="ui-icons.html" className="waves-effect waves-cyan">
+                                <a href="/api/logout" className="waves-effect waves-cyan">
                                     <i className="material-icons">clear</i>
                                     <span className="nav-text">Logout</span>
                                 </a>

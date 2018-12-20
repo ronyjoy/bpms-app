@@ -22,14 +22,13 @@ passport.use(new GoogleStrategy({
     callbackURL: '/auth/google/callback',
     proxy: true
 }, async (accessToken, refreshToken, profile, done) => {
-    console.log(profile.name.givenName);
     const existingUser = await User.findOne({ googleId: profile.id });
 
     if (existingUser) {
         return done(null, existingUser);
     }
     //create user in the database
-    const user = await new User({ googleId: profile.id, name: profile.name.givenName, image: profile._json.image.url }).save();
+    const user = await new User({ googleId: profile.id, name: profile.displayName, image: profile._json.image.url, email: profile.emails[0].value }).save();
     done(null, user);
 }
 
