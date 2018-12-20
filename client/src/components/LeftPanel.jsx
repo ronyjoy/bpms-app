@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 
 class Header extends Component {
@@ -12,7 +11,7 @@ class Header extends Component {
                     <li className="user-details cyan darken-2">
                         <div className="row">
                             <div className="col col s4 m4 l4">
-                                <img src="images/avatar/avatar-7.png" alt="" className="circle responsive-img valign profile-image cyan" />
+                                <img src={this.props.auth.image} alt="" className="circle responsive-img valign profile-image cyan" />
                             </div>
                             <div className="col col s8 m8 l8">
 
@@ -31,25 +30,25 @@ class Header extends Component {
                             </li>
                             <li className="bold">
                                 <a href="ui-icons.html" className="waves-effect waves-cyan">
-                                    <i className="material-icons">record_voice_over</i>
+                                    <i className="material-icons">phone</i>
                                     <span className="nav-text">Enquiry Management</span>
                                 </a>
                             </li>
                             <li className="bold">
                                 <a href="ui-icons.html" className="waves-effect waves-cyan">
-                                    <i className="material-icons">lightbulb_outline</i>
+                                    <i className="material-icons">monetization_on</i>
                                     <span className="nav-text">Quote Management</span>
                                 </a>
                             </li>
                             <li className="bold">
                                 <a href="ui-icons.html" className="waves-effect waves-cyan">
-                                    <i className="material-icons">lightbulb_outline</i>
+                                    <i className="material-icons">directions_run</i>
                                     <span className="nav-text">Project Management</span>
                                 </a>
                             </li>
                             <li className="bold">
                                 <a href="ui-icons.html" className="waves-effect waves-cyan">
-                                    <i className="material-icons">lightbulb_outline</i>
+                                    <i className="material-icons">clear</i>
                                     <span className="nav-text">Logout</span>
                                 </a>
                             </li>

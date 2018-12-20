@@ -13,11 +13,12 @@ class Header extends Component {
     }
 
     renderContent() {
+        console.log(this.props.auth);
         switch (this.props.auth) {
             case null:
                 return;
             case false:
-                return [(<ul className="right hide-on-med-and-down"><li>
+                return (<ul className="right hide-on-med-and-down"><li>
                     <a href="/auth/google" className="waves-effect waves-block waves-light profile-button" data-activates="profile-dropdown">
                         <i className="material-icons">fingerprint</i>
                     </a>
@@ -27,9 +28,9 @@ class Header extends Component {
                             <i className="material-icons">format_indent_increase</i>
                         </a>
                     </li>
-                </ul>)];
+                </ul>);
             default:
-                return [
+                return (
                     this.renderSearchBar(),
                     <ul className="right hide-on-med-and-down">
 
@@ -49,7 +50,7 @@ class Header extends Component {
                         <li>
                             <a href="javascript:void(0);" className="waves-effect waves-block waves-light profile-button" data-activates="profile-dropdown">
                                 <span className="avatar-status avatar-online">
-                                    <img src={require('../assets/images/avatar/avatar-7.png')} alt=" avatar" />
+                                    <img src={this.props.auth.image} alt=" avatar" />
                                     <i></i>
                                 </span>
                             </a>
@@ -65,7 +66,7 @@ class Header extends Component {
                             </a>
                         </li>
                     </ul>
-                ];
+                );
         }
     }
     render() {

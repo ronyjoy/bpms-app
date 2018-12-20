@@ -3,7 +3,7 @@ import { BrowserRouter, Router, Route, Switch } from "react-router-dom";
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import Header from "./Header"
-import Dashboard from './Dashboard';
+import LeftPanel from './LeftPanel';
 import Customer from './Customer';
 import Footer from './Footer'
 const SurveyNew = () => <h2>SurveyNew</h2>;
@@ -16,18 +16,14 @@ class App extends Component {
 
     render() {
         return (
-            <div className="container">
+            <BrowserRouter>
+                <div>
+                    <Header></Header>
+                    <Route path="/" component={LeftPanel} />
+                    <Route exact path="/customer" component={Customer} />
+                </div>
+            </BrowserRouter>
 
-                <BrowserRouter>
-                    <div>
-                        <Header></Header>
-                        <Route path="/" component={Dashboard} />
-                        <Route path="/dashboard" component={Dashboard} />
-                        <Route exact path="/customer" component={Customer} />
-
-                    </div>
-                </BrowserRouter>
-            </div>
         );
     };
 }
