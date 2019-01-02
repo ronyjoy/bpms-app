@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 class Header extends Component {
 
 
+
+
     renderContent() {
         return (
             <aside id="left-sidebar-nav">

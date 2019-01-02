@@ -17,6 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@material-ui/core": "^3.8.1",
     "body-parser": "~1.18.3",
     "concurrently": "^4.1.0",
     "cookie-parser": "~1.4.3",

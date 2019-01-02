@@ -20,6 +20,7 @@ class App extends Component {
                 <div>
                     <Header></Header>
                     <Route path="/" component={LeftPanel} />
+
                     <Route exact path="/customer" component={Customer} />
                 </div>
             </BrowserRouter>

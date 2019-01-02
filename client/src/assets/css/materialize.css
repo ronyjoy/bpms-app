@@ -2785,6 +2785,7 @@ th {
 
 html {
   box-sizing: border-box;
+ 
 }
 
 *, *:before, *:after {
@@ -3539,7 +3540,6 @@ nav ul a span.badge {
 }
 
 .container {
-  margin: 0 auto;
   max-width: 1280px;
   width: 90%;
 }
