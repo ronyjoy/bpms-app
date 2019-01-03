@@ -1,7 +1,116 @@
-npm install - will install the dependencies mentioned in the package.js
-npm run dev - run the express server and react server
+# BPMS
+
+BPMS - Business Proces management system
+
+## Getting Started
+git clone the the repository  
+```
+https://github.com/ronyjoy/bpms-app.git
+```
+
+run npm install command from the root folder to install the project dependencies mentioned in server package.js
+```
+cd bpms-app
+npm install
+```
+run npm install command from the client folder to install the project dependencies mentioned in client package.js
+```
+cd bpms-app/client
+npm install
+```
+
+run the express server and react server
+
+```
 npm run 
+```
+
 Express server runs in 5000 - http://localhost:5000/
     - take care of rest api - give json response back
 React server runs in 3000 - http://localhost:3000/
     - take care of ui
+
+### Prerequisites
+
+latest version of node js
+
+```
+Give examples
+```
+
+### Installing
+
+A step by step series of examples that tell you how to get a development env running
+
+Say what the step will be
+
+```
+Give the example
+```
+
+And repeat
+
+```
+until finished
+```
+
+End with an example of getting some data out of the system or using it for a little demo
+
+## Running the tests
+
+Explain how to run the automated tests for this system
+
+### Break down into end to end tests
+
+Explain what these tests test and why
+
+```
+Give an example
+```
+
+### And coding style tests
+
+Explain what these tests test and why
+
+```
+Give an example
+```
+
+## Built With
+
+* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
+* [Maven](https://maven.apache.org/) - Dependency Management
+* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+
+## Contributing
+
+Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+
+## Authors
+
+* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+## License
+
+
+
+##Heroku Production deployement
+
+```
+heroku login 
+git remote add heroku-production https://git.heroku.com/evening-hamlet-13500.git
+
+git push heroku-production master
+```
+
+## mongo lab URL
+
+https://mlab.com/login/
+get credentials from rony (T-80)
+
