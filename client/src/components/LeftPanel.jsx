@@ -29,7 +29,7 @@ class Header extends Component {
                                 </a>
                             </li>
                             <li className="bold">
-                                <a href="/ems" className="waves-effect waves-cyan">
+                                <a href="/enquiry" className="waves-effect waves-cyan">
                                     <i className="material-icons">phone</i>
                                     <span className="nav-text">Enquiry Management</span>
                                 </a>

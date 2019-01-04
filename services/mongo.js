@@ -1,6 +1,7 @@
 const keys = require('../config/keys');
 const mongoose = require('mongoose');
 const users = require('../models/user')
+//const enquiry_model = require('../models/enquiry')
 
 //Mongo db connection
 mongoose.connect(keys.mongoURI)
