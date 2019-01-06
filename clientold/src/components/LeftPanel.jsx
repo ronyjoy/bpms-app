@@ -24,12 +24,20 @@ class Header extends Component {
                     </li>
                     <li className="no-padding">
                         <ul className="collapsible" data-collapsible="accordion">
-                            <li className="bold">
-                                <a href="/customer" className="waves-effect waves-cyan">
-                                    <i className="material-icons">tag_faces</i>
-                                    <span className="nav-text">Customer Management</span>
-                                </a>
-                            </li>
+                            <ul className="collapsible" data-collapsible="accordion">
+                                <li className="bold">
+                                    <a href="/customer" className="waves-effect waves-cyan">
+                                        <i className="material-icons">tag_faces</i>
+                                        <span className="nav-text">Customer Management</span>
+                                    </a>
+                                </li>
+                                <li className="bold">
+                                    <a href="/customer" className="waves-effect waves-cyan">
+                                        <i className="material-icons">tag_faces</i>
+                                        <span className="nav-text">Customer Management</span>
+                                    </a>
+                                </li>
+                            </ul>
                             <li className="bold">
                                 <a href="/ems" className="waves-effect waves-cyan">
                                     <i className="material-icons">phone</i>
