@@ -13,6 +13,9 @@ class Login extends Component {
                 <Card className="p-4">
                   <CardBody>
                     <Form>
+                    <a href="/auth/google" >
+                    <img src="../../../assets/img/btn_google_signin_dark_pressed_web@2x.png" alt="Login with your google account"/>
+                    </a>
                       <h1>Login</h1>
                       <p className="text-muted">Sign In to your account</p>
                       <InputGroup className="mb-3">

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 // import { renderRoutes } from 'react-router-config';
 import Loadable from 'react-loadable';
 import './App.scss';
-
+import { connect } from 'react-redux';
+import * as actions from './actions';
+import PrivateRoute from './PrivateRoute';
 const loading = () => <div className="animated fadeIn pt-3 text-center">Loading...</div>;
 
 // Containers
@@ -35,20 +37,23 @@ const Page500 = Loadable({
 
 class App extends Component {
 
+  componentDidMount() {
+    this.props.fetchUser();
+  }
+
   render() {
     return (
-      <HashRouter>
-          <Switch>
-            <Route exact path="/login" name="Login Page" component={Login} />
-            <Route exact path="/register" name="Register Page" component={Register} />
-            <Route exact path="/404" name="Page 404" component={Page404} />
-            <Route exact path="/500" name="Page 500" component={Page500} />
-            <Route path="/" name="Home" component={DefaultLayout} />
-            <Route path="/" name="Home" component={DefaultLayout} />
-          </Switch>
-      </HashRouter>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" name="Login Page" component={Login} />
+          <PrivateRoute path="/dashboard/" component={DefaultLayout} />
+          <Route exact path="/404" name="Page 404" component={Page404} />
+          <Route exact path="/500" name="Page 500" component={Page500} />
+        </Switch>
+      </BrowserRouter>
     );
   }
+  
 }
 
-export default App;
+export default connect(null, actions)(App);
