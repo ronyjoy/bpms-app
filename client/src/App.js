@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 // import { renderRoutes } from 'react-router-config';
 import Loadable from 'react-loadable';
 import './App.scss';
 import { connect } from 'react-redux';
 import * as actions from './actions';
-import PrivateRoute from './PrivateRoute';
 const loading = () => <div className="animated fadeIn pt-3 text-center">Loading...</div>;
 
 // Containers
@@ -16,7 +15,7 @@ const DefaultLayout = Loadable({
 
 // Pages
 const Login = Loadable({
-  loader: () => import('./views/Pages/Login'),
+  loader: () => import('./Login'),
   loading
 });
 
@@ -37,23 +36,28 @@ const Page500 = Loadable({
 
 class App extends Component {
 
-  componentDidMount() {
-    this.props.fetchUser();
-  }
-
+ 
   render() {
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" name="Login Page" component={Login} />
-          <PrivateRoute path="/dashboard/" component={DefaultLayout} />
+          <Redirect exact from="/" to="/login/" />
+          <Route exact path="/login" name="Login Page" component={Login} />
+          <Route path="/dashboard/" component={DefaultLayout} />
           <Route exact path="/404" name="Page 404" component={Page404} />
           <Route exact path="/500" name="Page 500" component={Page500} />
         </Switch>
       </BrowserRouter>
     );
   }
-  
+
 }
 
-export default connect(null, actions)(App);
+
+
+
+export default connect(
+  state => ({
+    loggedIn: state.loggedIn,
+  })
+)(App);

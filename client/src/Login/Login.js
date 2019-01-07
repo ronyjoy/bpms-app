@@ -13,9 +13,7 @@ class Login extends Component {
                 <Card className="p-4">
                   <CardBody>
                     <Form>
-                    <a href="/auth/google" >
-                    <img src="../../../assets/img/btn_google_signin_dark_pressed_web@2x.png" alt="Login with your google account"/>
-                    </a>
+
                       <h1>Login</h1>
                       <p className="text-muted">Sign In to your account</p>
                       <InputGroup className="mb-3">
@@ -40,6 +38,13 @@ class Login extends Component {
                         </Col>
                         <Col xs="6" className="text-right">
                           <Button color="link" className="px-0">Forgot password?</Button>
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col xs="6" className="text-right">
+                          <a href="/auth/google" >
+                            <img src={require('../assets/img/btn_google_signin_dark_normal_web.png')} alt="Login with your google account" />
+                          </a>
                         </Col>
                       </Row>
                     </Form>

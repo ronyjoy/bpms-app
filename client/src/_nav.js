@@ -28,14 +28,7 @@ export default {
       ],
     },
     
-    {
-      title: true,
-      name: 'Enquiry',
-      wrapper: {
-        element: '',
-        attributes: {},
-      },
-    },
+    
     {
       name: 'Enquiry Mgt',
       url: '/cms',
@@ -54,14 +47,7 @@ export default {
      
       ],
     },
-    {
-      title: true,
-      name: 'Quotes',
-      wrapper: {
-        element: '',
-        attributes: {},
-      },
-    },
+   
     {
       name: 'Quote Mgt',
       url: '/cms',
