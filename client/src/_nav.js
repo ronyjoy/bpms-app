@@ -21,7 +21,7 @@ export default {
         },
         {
           name: 'Add Customer',
-          url: '/base/cards',
+          url: '/dashboard/addcustomer',
           icon: 'icon-puzzle',
         }
      
