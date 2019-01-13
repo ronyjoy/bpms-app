@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 // import { renderRoutes } from 'react-router-config';
 import Loadable from 'react-loadable';
 import './App.scss';
+import PrivateRoute from './PrivateRoute';
 import { connect } from 'react-redux';
 import * as actions from './actions';
 const loading = () => <div className="animated fadeIn pt-3 text-center">Loading...</div>;
@@ -36,14 +37,19 @@ const Page500 = Loadable({
 
 class App extends Component {
 
- 
+  componentDidMount() {
+    this.props.fetchUser();
+  }
+
+
+
   render() {
     return (
       <BrowserRouter>
         <Switch>
           <Redirect exact from="/" to="/login/" />
           <Route exact path="/login" name="Login Page" component={Login} />
-          <Route path="/dashboard/" component={DefaultLayout} />
+          <PrivateRoute exact path="/dashboard/" component={DefaultLayout} />
           <Route exact path="/404" name="Page 404" component={Page404} />
           <Route exact path="/500" name="Page 500" component={Page500} />
         </Switch>
@@ -51,13 +57,8 @@ class App extends Component {
     );
   }
 
+
+
 }
 
-
-
-
-export default connect(
-  state => ({
-    loggedIn: state.loggedIn,
-  })
-)(App);
+export default connect(null, actions)(App);
