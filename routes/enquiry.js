@@ -1,7 +1,7 @@
 var bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 //const Enquiry = mongoose.model('enquiry_model');
-const Enquiry = require('../models/enquiry')
+var Enquiry = require('../models/enquiry')
 
 module.exports = (app) => {
   app.use(bodyParser.json());
@@ -10,11 +10,15 @@ module.exports = (app) => {
   app.post('/api/enquiry', (req, res) => {
     console.log(req.body);
     console.log("inside the post api call");
-    let enquiry = new Enquiry();
-    enquiry.enquiry_id = "1";
+    //let enquiry = new Enquiry();
+    //enquiry.enquiry_id = "1";
+
+    //var enquiry = new Enquiry();
+    //enquiry.
 
     //create user in the database
-    const enquiryData = new Enquiry(enquiry);
+    const enquiryData = new Enquiry();
+    enquiryData.enquiry_description = req.param("desc");
 
     enquiryData.save(function (err) {
       if (err) return handleError(err);
@@ -22,10 +26,16 @@ module.exports = (app) => {
     });
   });
 
-  //Add a new customer
-  app.get('/api/enquiry', (req, res) => {
-    console.log(res);
+  //get all customers
+  app.get('/api/enquiry', function (req, res) {
+    Enquiry.find(function (err, enquiry) {
+      if (err) {
+        res.send(err);
+      }
+      res.json(enquiry);
+    });
   });
+
 };
 
 
