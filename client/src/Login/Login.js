@@ -18,7 +18,7 @@ class Login extends Component {
           <Row className="justify-content-center">
             <Col md="8">
               <CardGroup>
-                <Card className="p-4">
+                <Card className="p-4"  >
                   <CardBody>
                     <Form>
 
@@ -44,26 +44,24 @@ class Login extends Component {
                         <Col xs="6">
                           <Button color="primary" className="px-4">Login</Button>
                         </Col>
+                        <Col >
+                        <a href="/auth/google" >
+                            <img src={require('../assets/img/btn_google_signin_dark_normal_web.png')} height="35" width="120" alt="Login with your google account" />
+                          </a>
+                        </Col>
                         <Col xs="6" className="text-right">
                           <Button color="link" className="px-0">Forgot password?</Button>
                         </Col>
-                      </Row>
-                      <Row>
-                        <Col xs="6" className="text-right">
-                          <a href="/auth/google" >
-                            <img src={require('../assets/img/btn_google_signin_dark_normal_web.png')} alt="Login with your google account" />
-                          </a>
-                        </Col>
+                      
                       </Row>
                     </Form>
                   </CardBody>
                 </Card>
-                <Card className="text-white bg-primary py-5 d-md-down-none" style={{ width: '44%' }}>
+                <Card className="text-white bg-primary py-5 d-md-down-none" style={{ width: '20%' }}>
                   <CardBody className="text-center">
                     <div>
                       <h2>Sign up</h2>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua.</p>
+                      <p></p>
                       <Link to="/register">
                         <Button color="primary" className="mt-3" active tabIndex={-1}>Register Now!</Button>
                       </Link>
