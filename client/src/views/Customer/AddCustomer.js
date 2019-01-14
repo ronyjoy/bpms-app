@@ -1,5 +1,6 @@
 import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 import {
 	Container,
 	Badge,
@@ -29,36 +30,30 @@ import { ReactstrapInput } from "reactstrap-formik";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 // Async Validation
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
+const validationSchema = Yup.object().shape({
+	email: Yup.string()
+	  .email('E-mail is not valid!')
+	  .required('E-mail is required!'),
+	address: Yup.string()
+	  .min(6, 'Address has to be longer than 6 characters!')  
+	  .required('Address is required!'),
+	customername: Yup.string()
+	  .required('Customer Name is required!'),
+	contactperson: Yup.string()
+	  .required('Contact Person Name is required!'),
+	phone: Yup.number() 
+	  .required('phone is required!'),
+  })
 
 
 const AddCustomer = () => (
+
+
+
 	<Formik
 		initialValues={{ customername: "", contactperson: "",address:"", email:"", phone:"" }}
-		validate={values => {
-			const errors = {};
-			if (!values.customername) {
-				errors.customername = "Required";
-			}
-			if (!values.contactperson) {
-				errors.contactperson = "Required";
-			}
-			if (!values.phone) {
-				errors.phone = "Required";
-			}
-			if (!values.address) {
-				errors.address = "Required";
-			}
-			if (!values.email) {
-				errors.email = "Required";
-			} else if (
-				!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-			) {
-				errors.email = "Invalid email address";
-			}
-			return errors;
-		}}
+		validationSchema={validationSchema}
 		onSubmit={(values, { setSubmitting }) => {
 			console.log(values);
 			//Make API calls here
