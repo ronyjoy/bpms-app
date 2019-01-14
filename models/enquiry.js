@@ -9,6 +9,4 @@ var enquirySchema = new Schema({
   customer_contact_id: String
 });
 
-var Enquiry = mongoose.model('enquiry', enquirySchema);
-
-module.exports = Enquiry;
+module.exports = mongoose.model('enquiry', enquirySchema);

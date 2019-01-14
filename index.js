@@ -1,5 +1,6 @@
 //express handles the req from the browser
 const express = require('express');
+var bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
 require('./services/mongo');
 require('./services/passport');
@@ -7,24 +8,13 @@ const PORT = process.env.PORT || 5000;
 require('./routes/customer');
 require('./routes/enquiry');
 require('./routes/authRoutes');
-global.bodyParser = require('body-parser');
 const keys = require('./config/keys');
 const passport = require('passport');
 
 const app = express();
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
-
-
-
-app.use(bodyParser.urlencoded({
-  extended: true,
-  limit: '50mb',
-  parameterLimit: 100000
-}))
-app.use(bodyParser.json({
-  limit: '50mb',
-  parameterLimit: 100000
-}))
 
 
 //express middleware

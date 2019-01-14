@@ -58,7 +58,7 @@ const AddCustomer = () => (
 		onSubmit={(values, { setSubmitting }) => {
 			console.log(values);
 			//Make API calls here
-			axios.post("/api/customer", JSON.stringify(values, null, 2));
+			axios.post("/api/customer", values);
 		}}
 		render={({ submitForm, isSubmitting, values }) => (
 			<Form>
