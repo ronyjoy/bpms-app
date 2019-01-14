@@ -5,15 +5,13 @@ var customerSchema = new Schema({
   image: String,
   name: String,
   viewers: Number,
-  name:String,
+  customername:String,
   email:String,
-  contactPerson:String,
+  contactperson:String,
   phone:String,
   address:String,
   fax:String,
   rank:Number
 });
 
-var Customer = mongoose.model('customer', customerSchema);
-
-module.exports = Customer;
+mongoose.model('customer', customerSchema);

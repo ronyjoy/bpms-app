@@ -7,10 +7,26 @@ const PORT = process.env.PORT || 5000;
 require('./routes/customer');
 require('./routes/enquiry');
 require('./routes/authRoutes');
+global.bodyParser = require('body-parser');
 const keys = require('./config/keys');
 const passport = require('passport');
 
 const app = express();
+
+
+
+
+app.use(bodyParser.urlencoded({
+  extended: true,
+  limit: '50mb',
+  parameterLimit: 100000
+}))
+app.use(bodyParser.json({
+  limit: '50mb',
+  parameterLimit: 100000
+}))
+
+
 //express middleware
 app.use(
   cookieSession({

@@ -1,4 +1,5 @@
-var Customer = require('../models/customer');
+const mongoose = require('mongoose')
+const Customer = mongoose.model('customer');
 
 
 
@@ -18,20 +19,13 @@ module.exports = (app) => {
 
   //Add a new customer
   app.post('/api/customer', function (req, res) {
-    var customer = new Customer();
-    customer.name = req.param('name');
-    customer.n
-    customer.email = req.param('email');
-    customer.contactPerson = req.param('contactPerson');
-    customer.phone = req.param('phone');
-    customer.address = req.param('address');
-    customer.fax = req.param('fax');
-    customer.rank = req.param('0');
-
+    console.log(req.body); 
+    var customer = new Customer(req.body);
     customer.save(function (err) {
       if (err) {
         res.send(err);
       }
+      console.log('customer saved'); 
 
       res.json({ message: 'customer saved!' });
     });
