@@ -20,6 +20,7 @@ module.exports = (app) => {
   app.post('/api/customer', function (req, res) {
     var customer = new Customer();
     customer.name = req.param('name');
+    customer.n
     customer.email = req.param('email');
     customer.contactPerson = req.param('contactPerson');
     customer.phone = req.param('phone');
