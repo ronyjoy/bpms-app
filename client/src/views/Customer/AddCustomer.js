@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Field, reduxForm } from 'redux-form'
-import {   Badge,  Button,  ButtonDropdown,  Card,  CardBody,  CardFooter,  CardHeader,  Col,  Collapse,  DropdownItem,  DropdownMenu,  DropdownToggle,  Fade,  Form,  FormGroup,  FormText,  FormFeedback,  Input,  InputGroup,  InputGroupAddon,  InputGroupText,  Label,  Row,} from 'reactstrap';
+import {TextField} from '../Components/UIComponents'
+import { Badge, Button, ButtonDropdown, Card, CardBody, CardFooter, CardHeader, Col, Collapse, DropdownItem, DropdownMenu, DropdownToggle, Fade, Form, FormGroup, FormText, FormFeedback, Input, InputGroup, InputGroupAddon, InputGroupText, Label, Row, } from 'reactstrap';
 
 
 const validate = values => {
@@ -33,45 +34,39 @@ const warn = values => {
   return warnings
 }
 
-const renderField = ({
-  input,
-  label,
-  type,
-  meta: { touched, error, warning }
-}) => (
-  <div>
-    <label>{label}</label>
-    <div>
-      <input {...input} placeholder={label} type={type} />
-      {touched &&
-        ((error && <span>{error}</span>) ||
-          (warning && <span>{warning}</span>))}
-    </div>
-  </div>
-)
+const handleSubmi1 = event => {
+  event.preventDefault();
+  const data = new FormData(event.target);
+  console.log(data);
+};
 
-const AddCustomer = props => {
-  const { handleSubmit, pristine, reset, submitting } = props
+
+
+class AddCustomer extends Component {
+
+render() {
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={this.props.handleSubmit(values => console.log(values))}>
 
-<div className="animated fadeIn">
+      <div className="animated fadeIn">
         <Row>
-        
+
           <Col xs="12" sm="6">
             <Card>
               <CardHeader>
-                <strong>Company</strong>
-                <small> Form</small>
+                <strong>New</strong>
+                <small> Customer</small>
               </CardHeader>
               <CardBody>
                 <FormGroup>
-                  <Label htmlFor="company">Company</Label>
-                  <Input type="text" id="company" placeholder="Enter your company name" />
+                  <Field name="customername" type="text" component={TextField} label="Customer Name" />
+                </FormGroup>
+
+                <FormGroup>
+                  <Field name="address" type="textarea" component={TextField} label="Customer Address" />
                 </FormGroup>
                 <FormGroup>
-                  <Label htmlFor="vat">VAT</Label>
-                  <Input type="text" id="vat" placeholder="DE1234567890" />
+                  <Field name="contactperson" type="textarea" component={TextField} label="Contact Person" />
                 </FormGroup>
                 <FormGroup>
                   <Label htmlFor="street">Street</Label>
@@ -81,7 +76,7 @@ const AddCustomer = props => {
                   <Col xs="8">
                     <FormGroup>
                       <Label htmlFor="city">City</Label>
-                      <Input type="text" id="city" placeholder="Enter your city" />
+                      <Input type="text" name = "city" id="city" component = "Field" placeholder="Enter your city" />
                     </FormGroup>
                   </Col>
                   <Col xs="4">
@@ -96,32 +91,38 @@ const AddCustomer = props => {
                   <Input type="text" id="country" placeholder="Country name" />
                 </FormGroup>
               </CardBody>
+              <CardFooter>
+                <Button type="submit" size="sm" color="primary"><i className="fa fa-dot-circle-o"></i> Submit</Button>
+                <Button type="reset" size="sm" color="danger"><i className="fa fa-ban"></i> Reset</Button>
+              </CardFooter>
             </Card>
           </Col>
         </Row>
-      <Field
-        name="username"
-        type="text"
-        component={renderField}
-        label="Username"
-      />
-      <Field name="email" type="email" component={renderField} label="Email" />
-      <Field name="age" type="number" component={renderField} label="Age" />
-      <div>
-        <button type="submit" disabled={submitting}>
-          Submit
+        <Field
+          name="username"
+          type="text"
+          component={TextField}
+          label="Username"
+        />
+        <Field name="email" type="email" component={TextField} label="Email" />
+        <Field name="age" type="number" component={TextField} label="Age" />
+        <div>
+          <button type="submit" >
+            Submit
         </button>
-        <button type="button" disabled={pristine || submitting} onClick={reset}>
-          Clear Values
+          <button type="button" >
+            Clear Values
         </button>
-      </div>
+        </div>
       </div>
     </form>
   )
 }
 
+}
+ 
 export default reduxForm({
-  form: 'syncValidation', // a unique identifier for this form
+  form: 'AddCustomerForm', // a unique identifier for this form
   validate, // <--- validation function given to redux-form
   warn // <--- warning function given to redux-form
 })(AddCustomer)
