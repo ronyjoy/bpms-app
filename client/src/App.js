@@ -18,6 +18,10 @@ const AddCustomer = Loadable({
   loader: () => import('./views/Customer/AddCustomer'),
   loading
 });
+const ListCustomer = Loadable({
+  loader: () => import('./views/Customer/ListCustomer'),
+  loading
+});
 
 // Pages
 const Login = Loadable({
@@ -56,6 +60,7 @@ class App extends Component {
           <Route exact path="/login" name="Login Page" component={Login} />
           <PrivateRoute path="/dashboard/" component={DefaultLayout} />
           <PrivateRoute path="/dashboard/addcustomer/" component={AddCustomer} />
+          <PrivateRoute path="/dashboard/customers/" component={ListCustomer} />
           <Route exact path="/404" name="Page 404" component={Page404} />
           <Route exact path="/500" name="Page 500" component={Page500} />
         </Switch>

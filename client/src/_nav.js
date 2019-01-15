@@ -16,7 +16,7 @@ export default {
       children: [
         {
           name: 'List Customer',
-          url: '/customer',
+          url: '/dashboard/customers',
           icon: 'icon-puzzle',
         },
         {
