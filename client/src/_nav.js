@@ -12,17 +12,17 @@ export default {
     {
       name: 'Customer Mgt',
       url: '/cms',
-      icon: 'icon-puzzle',
+      icon: 'icon-user',
       children: [
         {
           name: 'List Customer',
           url: '/dashboard/customers',
-          icon: 'icon-puzzle',
+          icon: 'icon-list',
         },
         {
           name: 'Add Customer',
           url: '/dashboard/addcustomer',
-          icon: 'icon-puzzle',
+          icon: 'icon-magnifier-add',
         }
      
       ],
@@ -32,17 +32,17 @@ export default {
     {
       name: 'Enquiry Mgt',
       url: '/cms',
-      icon: 'icon-puzzle',
+      icon: 'icon-pencil',
       children: [
         {
           name: 'List Enquiry',
           url: '/customer',
-          icon: 'icon-puzzle',
+          icon: 'icon-list',
         },
         {
           name: 'Add Enquiry',
           url: '/base/cards',
-          icon: 'icon-puzzle',
+          icon: 'icon-magnifier-add',
         }
      
       ],
@@ -51,17 +51,17 @@ export default {
     {
       name: 'Quote Mgt',
       url: '/cms',
-      icon: 'icon-puzzle',
+      icon: 'icon-folder',
       children: [
         {
           name: 'List Quote',
           url: '/customer',
-          icon: 'icon-puzzle',
+          icon: 'icon-list',
         },
         {
           name: 'Add Quote',
           url: '/base/cards',
-          icon: 'icon-puzzle',
+          icon: 'icon-magnifier-add',
         }
      
       ],

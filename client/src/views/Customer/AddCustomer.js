@@ -94,12 +94,12 @@ const AddCustomer = () => (
 										<FormGroup row className="my-0">
 											<Col xs="8">
 												<FormGroup>
-													<Field type="email" label="Email" name="email" component={ReactstrapInput} />
+													<Field type="email" label="Email" name="email" placeholder="email@email.com"component={ReactstrapInput} />
 												</FormGroup>
 											</Col>
 											<Col xs="4">
 												<FormGroup>
-													<Field type="text" label="Phone" name="phone" component={ReactstrapInput} />
+													<Field type="text" label="Phone" name="phone" placeholder="1111111111" component={ReactstrapInput} />
 												</FormGroup>
 											</Col>
 										</FormGroup>
