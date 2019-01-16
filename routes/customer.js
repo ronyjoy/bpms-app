@@ -19,16 +19,24 @@ module.exports = (app) => {
 
   //Add a new customer
   app.post('/api/customer', function (req, res) {
-    console.log(req.body)
+    console.log(req.body);
     var customer = new Customer(req.body);
-    console.log("Customer "+customer);
+    console.log("Customer " + customer);
     customer.save(function (err) {
       if (err) {
         res.send(err);
       }
-      console.log('customer saved'); 
+      console.log('customer saved');
 
       res.json({ message: 'customer saved!' });
+    });
+  });
+
+  app.put('/api/customer/', function (req, res) {
+    console.log(req.body._id)
+    Customer.findByIdAndUpdate(req.body._id, req.body, { new: true }, function (err, user) {
+      if (err) return res.status(500).send("There was a problem updating the user.");
+      res.status(200).send(user);
     });
   });
 };

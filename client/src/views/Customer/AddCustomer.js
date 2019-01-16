@@ -29,6 +29,7 @@ import {
 } from 'reactstrap';
 import { ReactstrapInput } from "reactstrap-formik";
 import "bootstrap/dist/css/bootstrap.min.css";
+import isEmpty from 'lodash/isEmpty';
 
 // Async Validation
 
@@ -58,9 +59,20 @@ const AddCustomer = () => (
 		onSubmit={(values, { setSubmitting }) => {
 			console.log(values);
 			//Make API calls here
-			axios.post("/api/customer", values);
+			axios.post("/api/customer", values)
+			.then(function (response) {
+				// handle success
+				console.log(response);
+			  })
+			  .catch(function (error) {
+				// handle error
+				console.log(error);
+			  })
+			  .then(function () {
+				// always executed
+			  });
 		}}
-		render={({ submitForm, isSubmitting, values }) => (
+		render={({ values, touched, errors, dirty, isSubmitting , submitForm }) => (
 			<Form>
 				<Container >
 					<Row>
@@ -106,7 +118,7 @@ const AddCustomer = () => (
 									</FormGroup>
 								</CardBody>
 								<CardFooter>
-									<Button type="submit" size="sm" color="primary"><i className="fa fa-dot-circle-o"></i> Submit</Button>
+									<Button type="submit" disabled={isSubmitting || !isEmpty(errors) || !dirty} size="sm" color="primary"><i className="fa fa-dot-circle-o"></i> Submit</Button>
 									<Button type="reset" size="sm" color="danger"><i className="fa fa-ban"></i> Reset</Button>
 								</CardFooter>
 							</Card>
