@@ -28,13 +28,13 @@ module.exports = (app) => {
       }
       console.log('customer saved');
 
-      res.json({ message: 'customer saved!' });
+      res.json(customer);
     });
   });
 
-  app.put('/api/customer/', function (req, res) {
-    console.log(req.body._id)
-    Customer.findByIdAndUpdate(req.body._id, req.body, { new: true }, function (err, user) {
+  app.put('/api/customer/:id', function (req, res) {
+    console.log(req.params.id)
+    Customer.findByIdAndUpdate(req.params.id, req.body, { new: true }, function (err, user) {
       if (err) return res.status(500).send("There was a problem updating the user.");
       res.status(200).send(user);
     });

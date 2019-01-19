@@ -13,13 +13,14 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Badge from '@material-ui/core/Badge';
-
+import Alert from 'react-s-alert';
 import {
 	fieldToTextField,
 	TextField,
 	TextFieldProps,
 	Select,
 } from 'formik-material-ui';
+
 
 
 const styles = theme => ({
@@ -34,16 +35,17 @@ const styles = theme => ({
 		flexBasis: 200,
 	},
 	button: {
-    margin: theme.spacing.unit,
-  },
-  input: {
-    display: 'none',
-  },
+		margin: theme.spacing.unit,
+	},
+	input: {
+		display: 'none',
+	},
 });
 
 
 // Async Validation
 class AddCustomer extends React.Component {
+
 
 	validationSchema = Yup.object().shape({
 		email: Yup.string()
@@ -60,15 +62,16 @@ class AddCustomer extends React.Component {
 			.required('phone is required!'),
 	})
 
-
+	
 	render() {
+		
 		const { classes } = this.props;
 		return (
 
 			<Formik
 				initialValues={{ customername: "", contactperson: "", address: "", email: "", phone: "" }}
 				validationSchema={this.validationSchema}
-				onSubmit={(values, { setSubmitting }) => {
+				onSubmit={(values, actions) => {
 					console.log(values);
 					//Make API calls here
 					axios.post("/api/customer", values)
@@ -81,18 +84,30 @@ class AddCustomer extends React.Component {
 							console.log(error);
 						})
 						.then(function () {
-							// always executed
+							actions.setSubmitting(false);
+							actions.resetForm({ customername: "", contactperson: "", address: "", email: "", phone: "" });
+							Alert.info('Customer Saved', {
+								position: 'top-right',
+								effect: 'scale',
+								offset: 80
+							  });
 						});
 				}}
-				render={({ values, touched, errors, dirty, isSubmitting, submitForm }) => (
+				render={x => (
 					<Form>
 						<Field type="text" variant="outlined" className={classNames(classes.margin, classes.textField)} label="Customer Name" name="customername" placeholder="ABC Customer" component={TextField} />
 						<Field type="text" variant="outlined" className={classNames(classes.margin, classes.textField)} label="Contact Person" name="contactperson" placeholder="Contact Person" component={TextField} />
 						<Field type="text" variant="outlined" label="Address" className={classNames(classes.margin, classes.textField)} name="address" placeholder="Address" component={TextField} />
 						<Field type="email" variant="outlined" label="Email" className={classNames(classes.margin, classes.textField)} name="email" placeholder="email@email.com" component={TextField} />
 						<Field type="text" variant="outlined" label="Phone" className={classNames(classes.margin, classes.textField)} name="phone" placeholder="1111111111" component={TextField} />
-							<Button  className={classes.button} type="submit" variant="contained" color="primary" disabled={isSubmitting || !isEmpty(errors) || !dirty} size="sm" color="primary"> Submit</Button>
-							<Button  className={classes.button} type="reset" variant="contained" color="primary" size="sm" color="danger">Reset</Button>
+						<br />
+						{x.isSubmitting && <LinearProgress />}
+						<br />
+						<Button className={classes.button} type="submit" variant="contained" color="primary" disabled={x.isSubmitting || !isEmpty(x.errors) || !x.dirty} > Submit</Button>
+						<Button className={classes.button} type="reset" variant="contained" color="primary">Reset</Button>
+
+
+
 					</Form >
 				)}
 			/>
@@ -102,3 +117,4 @@ class AddCustomer extends React.Component {
 }
 
 export default withStyles(styles)(AddCustomer);
+

@@ -51,7 +51,7 @@ class ListCustomer extends Component {
 
   onRowValueChanged =(params) => {
     console.log(params.data);
-    axios.put('/api/customer/' , params.data) 
+    axios.put('/api/customer/'+params.data._id , params.data) 
     .then(function (response) {
       // handle success
       console.log('update success' + response);
@@ -83,6 +83,7 @@ class ListCustomer extends Component {
             pivotPanelShow={this.state.pivotPanelShow}
             enableRangeSelection={true}
             pagination={true}
+            paginationPageSize={this.state.paginationPageSize}
             onGridReady={this.onGridReady}
             onRowValueChanged ={this.onRowValueChanged}
             rowData={this.state.rowData}

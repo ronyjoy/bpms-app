@@ -10,6 +10,14 @@ import { createStore, applyMiddleware } from 'redux';
 
 import reducers from './reducers';
 import reduxThunk from 'redux-thunk';
+import 'react-s-alert/dist/s-alert-default.css';
+import 'react-s-alert/dist/s-alert-css-effects/slide.css';
+import 'react-s-alert/dist/s-alert-css-effects/scale.css';
+import 'react-s-alert/dist/s-alert-css-effects/flip.css';
+import 'react-s-alert/dist/s-alert-css-effects/jelly.css';
+import 'react-s-alert/dist/s-alert-css-effects/stackslide.css';
+import 'react-s-alert/dist/s-alert-css-effects/genie.css';
+import 'react-s-alert/dist/s-alert-css-effects/bouncyflip.css';
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
   
