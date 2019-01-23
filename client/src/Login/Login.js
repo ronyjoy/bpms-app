@@ -8,7 +8,7 @@ class Login extends Component {
   componentDidMount() {
     // If logged in and user navigates to Login page, should redirect them to dashboard
     if (this.props.auth) {
-      this.props.history.push("/auth0/login");
+      this.props.history.push("/dashboard");
     }
   }
   render() {
@@ -20,7 +20,7 @@ class Login extends Component {
               <CardGroup>
                 <Card className="p-4"  >
                   <CardBody>
-                    <Form action="/auth0/login">
+                    <Form action="/auth/auth0">
           
                       <Row>
                         <Col xs="6">
