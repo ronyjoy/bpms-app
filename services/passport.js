@@ -25,13 +25,24 @@ passport.use(new Auth0Strategy({
     callbackURL: '/callback',
     proxy: true
 }, async (accessToken, refreshToken, extraParams, profile, done) => {
-    const existingUser = await User.findOne({ googleId: profile.id });
-
+    console.log("accessToken");
+    console.log(accessToken);
+    console.log("extraParams");
+    console.log(extraParams);
+    console.log("profile");
+    console.log(profile);
+    console.log("email");
+    console.log(profile._json.email);
+    
+    const existingUser = await User.findOne({ email: profile._json.email });
+    console.log("existingUser");
+    console.log(existingUser);
+    
     if (existingUser) {
         return done(null, existingUser);
     }
     //create user in the database
-    const user = await new User({ googleId: profile.id, name: profile.displayName, image: profile.picture, email: profile.email }).save();
+    const user = await new User({ userid: profile._json.sub, name: profile._json.name, image: profile._json.picture, email: profile._json.email }).save();
     done(null, user);
 }
 
