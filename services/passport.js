@@ -28,7 +28,7 @@ passport.use(new Auth0Strategy({
     console.log("accessToken");
     console.log(accessToken);
     console.log("extraParams");
-    console.log(extraParams);
+    console.log(extraParams.id_token);
     console.log("profile");
     console.log(profile);
     console.log("email");
