@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 5000;
 require('./routes/customer');
 require('./routes/enquiry');
 require('./routes/authRoutes');
+require('./routes/organization');
 const keys = require('./config/keys');
 const passport = require('passport');
 
@@ -23,17 +24,18 @@ app.use(
     maxAge: 30 * 24 * 60 * 60 * 1000,
     //adding encription key to encript the cookie 
     keys: [keys.cookieKey]
-
+    
   }
   ));
-
-//express middleware
-app.use(passport.initialize());
-app.use(passport.session());
-
-require('./routes/authRoutes')(app);
-require('./routes/customer')(app)
-require('./routes/enquiry')(app)
+  
+  //express middleware
+  app.use(passport.initialize());
+  app.use(passport.session());
+  
+  require('./routes/authRoutes')(app);
+  require('./routes/customer')(app);
+  require('./routes/enquiry')(app);
+  require('./routes/organization')(app);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
