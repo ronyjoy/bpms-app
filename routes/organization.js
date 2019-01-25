@@ -15,6 +15,19 @@ module.exports = (app) => {
       res.json(organizations);
     });
   });
+  //get  organizations by name
+  app.get('/api/organizations/:name', function (req, res) {
+    Organization.findOne({name:req.params.name},function (err, organizations) {
+      if (err) {
+        res.send(err);
+      }
+      if(organizations) {
+        res.json(organizations);
+      } else {
+        res.json('No Organization found by name :'+req.params.name);
+      }
+    });
+  });
 
 
   //Add a new organizations
