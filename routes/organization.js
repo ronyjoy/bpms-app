@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const Organization = mongoose.model("organizations");
+const Employee = mongoose.model("employee");
+
 
 module.exports = app => {
   //get all organizations
@@ -28,6 +30,25 @@ module.exports = app => {
       }
     });
   });
+  //get  organizations by name
+  app.get("/api/organizations/:org/employee/:email", function(req, res) {
+    console.log(req.params.email);
+    Organization.find({name:req.params.org, employees: { $elemMatch:{email:req.params.email}} }, function(
+      err,
+      organizations
+    ) {
+      if (err) {
+        res.send(err);
+      }
+      if (organizations) {
+        
+        res.json(organizations);
+      } else {
+        res.json("No Organization found by name :" + req.params.name);
+      }
+    });
+  });
+  
 
   //Add a new organizations
   app.post("/api/organization", function(req, res) {
