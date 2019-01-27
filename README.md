@@ -19,7 +19,7 @@ cd bpms-app/client
 npm install
 ```
 
-run the express server and react server
+run following command from the root folder to ru express server and react server. 
 
 ```
 npm run 
