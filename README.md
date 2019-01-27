@@ -22,7 +22,7 @@ npm install
 run following command from the root folder to ru express server and react server. 
 
 ```
-npm run 
+npm run dev
 ```
 
 Express server runs in 5000 - http://localhost:5000/
@@ -44,6 +44,11 @@ React server runs in 3000 - http://localhost:3000/
 
 ### And coding style tests
 
+### How to modify
+
+Create pull request and needs approval to merge.
+
+
 
 ## Versioning
 
@@ -60,7 +65,7 @@ See also the list of [contributors](https://github.com/ronyjoy/bpms-app/graphs/c
 Proprietary software
 
 
-##H eroku Production deployement
+## Heroku Production deployement
 
 ```
 heroku login 
