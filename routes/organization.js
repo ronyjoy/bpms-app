@@ -41,7 +41,7 @@ module.exports = app => {
         res.send(err);
       }
       if (organizations) {
-        
+        console.log("organizations "+organizations);
         res.json(organizations);
       } else {
         res.json("No Organization found by name :" + req.params.name);
