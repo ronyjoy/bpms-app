@@ -12,6 +12,7 @@ var customerSchema = new Schema({
   address:String,
   fax:String,
   rank:Number
+
 });
 
 module.exports = mongoose.model('customers', customerSchema);

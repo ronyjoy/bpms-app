@@ -30,7 +30,8 @@
     "passport": "^0.4.0",
     "passport-auth0": "^1.1.0",
     "passport-google-oauth20": "^1.0.0",
-    "react-meta-tags": "^0.7.3"
+    "react-meta-tags": "^0.7.3",
+    "request": "^2.88.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.9"
