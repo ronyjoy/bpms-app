@@ -1,16 +1,16 @@
 //express handles the req from the browser
-const express = require("express");
-var bodyParser = require("body-parser");
-const cookieSession = require("cookie-session");
-require("./services/mongo");
-require("./services/passport");
+import express from 'express';
+import bodyParser from 'body-parser';
+import cookieSession from 'cookie-session';
+import './services/mongo';
+import './services/passport';
 const PORT = process.env.PORT || 5000;
-const customer = require("./routes/customer");
-const enquiry = require("./routes/enquiry");
-const authRoutes = require("./routes/authRoutes");
-const organization = require("./routes/organization");
-const keys = require("./config/keys");
-const passport = require("passport");
+import customer from './routes/customer';
+import enquiry from "./routes/enquiry";
+import authRoutes from './routes/authRoutes';
+import organization from './routes/organization';
+import keys from './config/keys';
+import passport from 'passport';
 
 const app = express();
 app.use(bodyParser.json());

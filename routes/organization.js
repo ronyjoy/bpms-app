@@ -1,7 +1,6 @@
-const mongoose = require("mongoose");
-const express = require("express");
+import express from "express";
+import Organization from '../models/organization';
 const router = express.Router();
-const Organization = mongoose.model("organizations");
 
 //get all organizations
 router.get("/", function(req, res) {

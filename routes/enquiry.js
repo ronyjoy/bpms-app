@@ -1,7 +1,6 @@
-const mongoose = require("mongoose");
-const express = require("express");
+import express from "express";
 const router = express.Router();
-var Enquiry = require("../models/enquiry");
+import Enquiry from '../models/enquiry'
 
 
 //Add a new customer
