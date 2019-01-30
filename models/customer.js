@@ -5,7 +5,10 @@ var customerSchema = new Schema({
   image: String,
   name: String,
   viewers: Number,
-  customername:String,
+  customername: {
+    type: String,
+    unique: true
+  },
   email:String,
   contactperson:String,
   phone:String,
