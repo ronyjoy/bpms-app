@@ -1,6 +1,5 @@
-const mongoose = require("mongoose");
-const Customer = mongoose.model("customers");
-const express = require("express");
+import express from "express";
+import Customer from '../models/customer'
 const router = express.Router();
 
 //get all customers

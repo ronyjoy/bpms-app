@@ -1,6 +1,6 @@
-const passport = require("passport");
-const Request = require("request");
-const express = require("express");
+import passport from 'passport';
+import Request from "request";
+import express from "express";
 const router = express.Router();
 
 router.get("/api/logout", (req, res) => {
