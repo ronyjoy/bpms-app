@@ -1,0 +1,14 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 25
+    },
+    "auditLog": "C:\\projects\\bpms\\bpms-app\\log\\.5b342cacb4ffcc9702e6f55ac24eb0f8ec085c73-audit.json",
+    "files": [
+        {
+            "date": 1549009530814,
+            "name": "C:\\projects\\bpms\\bpms-app\\log\\app.log..Fr-02-yyyy",
+            "hash": "523a06ae0bac0c45e10b98fec28b62ad"
+        }
+    ]
+}

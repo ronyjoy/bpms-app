@@ -1,0 +1,7 @@
+{"message":"sending all customers...","level":"info"}
+{"message":"Error in Updating customer ReferenceError: Organization is not defined","level":"error"}
+{"message":"sending all customers...","level":"info"}
+{"message":"updating customer with 5c3cedbc790bcf197c069f28 customer details [object Object]","level":"info"}
+{"message":"sending all customers...","level":"info"}
+{"message":"adding Customer...","level":"info"}
+{"message":"sending all customers...","level":"info"}

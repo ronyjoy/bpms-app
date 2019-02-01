@@ -32,7 +32,9 @@
     "passport-auth0": "^1.1.0",
     "passport-google-oauth20": "^1.0.0",
     "react-meta-tags": "^0.7.3",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^3.6.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
