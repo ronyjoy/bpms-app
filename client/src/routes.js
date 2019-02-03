@@ -5,6 +5,7 @@ const AddCustomer = React.lazy(() => import('./views/Customer/AddCustomer'));
 const ListCustomer = React.lazy(() => import('./views/Customer/ListCustomer'));
 const Dashboard = React.lazy(() => import('./views/Dashboard'));
 const Page404 = React.lazy(() => import('./views/Pages/Page404'));
+const Page401 = React.lazy(() => import('./views/Pages/Page401'));
 
 
 const routes = [
@@ -12,7 +13,8 @@ const routes = [
   { path: '/dashboard/addcustomer', name: 'Add Customer', component: AddCustomer },
   { path: '/dashboard/customers', name: 'List Customer', component: ListCustomer },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
-  { path: '/404', name: 'Page404', component: Page404 }
+  { path: '/404', name: 'Page404', component: Page404 },
+  { path: '/401', name: 'Page401', component: Page401 }
 ];
 
 export default routes;

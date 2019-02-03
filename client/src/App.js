@@ -42,6 +42,11 @@ const Page404 = Loadable({
   loading
 });
 
+const Page401 = Loadable({
+  loader: () => import("./views/Pages/Page401"),
+  loading
+});
+
 const Page500 = Loadable({
   loader: () => import("./views/Pages/Page500"),
   loading
@@ -68,6 +73,7 @@ class App extends Component {
               path="/dashboard/customers/"
               component={ListCustomer}
             />
+            <Route exact path="/401" name="Page 401" component={Page401} />
             <Route exact path="/404" name="Page 404" component={Page404} />
             <Route exact path="/500" name="Page 500" component={Page500} />
           </Switch>

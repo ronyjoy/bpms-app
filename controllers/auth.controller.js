@@ -1,18 +1,19 @@
 import logger from "../core/logger/app.logger";
+import Organization from '../models/organization.model';
 
 const controller = {};
 
-controller.isUserWithOrg = async (req, res) => {
+controller.isUserWithOrg = async (orgName, user) => {
   try {
+   let org = await Organization.getByNameAndEmpEmail(orgName,user);
+   if(org) {
+     return true;
+    } else {
+      return false;
+    }
     
-    let org = req.headers.host.split(".")[0];
-    let user = req.user.email;
-    logger.info(org);
-    logger.info(user);
-    return true;
   } catch (err) {
     logger.error("Error in getting organizations- " + err);
-    res.send("Got error in getAll");
   }
 };
 
