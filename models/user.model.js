@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
@@ -7,6 +7,14 @@ const userSchema = new Schema({
     image: String,
     email: String
 });
+const UserModel = mongoose.model("users", userSchema);
 
+UserModel.findByEmail = email => {
+    return UserModel.findOne({ email: email });
+};
 
-module.exports = mongoose.model('users', userSchema);
+UserModel.add = user => {
+    return UserModel.create(user);
+  };
+
+export default UserModel;

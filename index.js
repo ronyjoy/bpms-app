@@ -2,8 +2,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cookieSession from 'cookie-session';
-import './services/mongo';
-import './services/passport';
+import './services/mongo.service';
+import './services/passport.service';
 import customer from './routes/customer.route';
 import enquiry from "./routes/enquiry.route";
 import authRoutes from './routes/auth.routes';
@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //express middleware
 app.use(
   cookieSession({
-    maxAge: 30 * 24 * 60 * 60 * 1000,
+    maxAge: 60 * 60 * 1000,
     //adding encription key to encript the cookie
     keys: [keys.cookieKey]
   })

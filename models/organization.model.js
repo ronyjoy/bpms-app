@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
-var Schema = mongoose.Schema;
+import logger from "../core/logger/app.logger";
+const {Schema} = mongoose;
 
 var employee = new Schema({
   name: String,
@@ -24,14 +25,16 @@ OrganizationModel.getAll = () => {
 };
 
 OrganizationModel.getByName = orgName => {
-  return OrganizationModel.find({ name: orgName });
+  return OrganizationModel.findOne({ name: orgName });
 };
 
-OrganizationModel.getByNameAndEmpEmail = (orgName, empEmail) => {
-  return OrganizationModel.find({
+OrganizationModel.getByNameAndEmpEmail = async (orgName, empEmail) => {
+  let org = await OrganizationModel.findOne({
     name: orgName,
     employees: { $elemMatch: { email: empEmail } }
   });
+  logger.info('GetOrgbyNameandempemail %s, %s, %o' , orgName,empEmail,org);
+  return org;
 };
 
 OrganizationModel.add = org => {
