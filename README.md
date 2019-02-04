@@ -31,7 +31,8 @@ React server runs in 3000 - http://localhost:3000/
     - take care of ui
 
 ### Prerequisites
-
+Install mongodb 
+https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/
 
 ### Installing
 
