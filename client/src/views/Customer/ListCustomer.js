@@ -4,13 +4,13 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import {fetchCustomer} from '../../actions'
 
 class ListCustomer extends Component {
 
   componentDidMount() {
-    fetch('/api/customer')
-      .then(result => result.json())
-      .then(rowData => this.setState({ rowData }))
+    this.props.dispatch(fetchCustomer());
   }
 
   onCellValueChanged = (item ) =>{
@@ -86,12 +86,15 @@ class ListCustomer extends Component {
             paginationPageSize={this.state.paginationPageSize}
             onGridReady={this.onGridReady}
             onRowValueChanged ={this.onRowValueChanged}
-            rowData={this.state.rowData}
+            rowData={this.props.customers}
           />
       </div>
     );
   }
 }
 
+const mapStateToProps = state => ({
+  customers: state.customer
+});
 
-export default ListCustomer;
+export default connect(mapStateToProps) (ListCustomer);

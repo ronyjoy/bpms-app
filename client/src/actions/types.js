@@ -1,3 +1,3 @@
 export const FETCH_USER ='fetch_user';
-
-export const CHANGE_LOGGED_IN = 'CHANGE_LOGGED_IN';
+export const FETCH_CUSTOMER ='fetch_customer';
+export const ADD_CUSTOMER ='add_customer';

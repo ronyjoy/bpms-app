@@ -32,11 +32,6 @@ const Login = Loadable({
   loading
 });
 
-const Register = Loadable({
-  loader: () => import("./views/Pages/Register"),
-  loading
-});
-
 const Page404 = Loadable({
   loader: () => import("./views/Pages/Page404"),
   loading
@@ -64,12 +59,12 @@ class App extends Component {
           <Switch>
             <Redirect exact from="/" to="/login/" />
             <Route exact path="/login" name="Login Page" component={Login} />
-            <PrivateRoute path="/dashboard/" component={DefaultLayout} />
-            <PrivateRoute
+            <Route path="/dashboard/" component={DefaultLayout} />
+            <Route
               path="/dashboard/addcustomer/"
               component={AddCustomer}
             />
-            <PrivateRoute
+            <Route
               path="/dashboard/customers/"
               component={ListCustomer}
             />
