@@ -17,8 +17,6 @@ controller.getAll = async (req, res) => {
 
 controller.addEnquiry = async (req, res) => {
     let enquiry = new Enquiry(req.body);
-    console.log("enquiry details ****************")
-    console.log(enquiry);
     try {
 
         const addedEnquiry = await Enquiry.addEnquiry(enquiry);
@@ -26,7 +24,6 @@ controller.addEnquiry = async (req, res) => {
         res.send('added: ' + addedEnquiry);
     }
     catch(err) {
-        console.log(err);
         res.send('Could not add Enquiry');
     }
 }
