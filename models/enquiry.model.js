@@ -12,12 +12,16 @@ var enquirySchema = new Schema({
 let EnquiryModel = mongoose.model('enquiry', enquirySchema);
 
 EnquiryModel.getAll = () => {
-    return CarsModel.find({});
+    return EnquiryModel.find({});
 }
 
 EnquiryModel.addEnquiry = (enquiry) => {
     return enquiry.save();
 }
+
+EnquiryModel.update = (id, detailsToUpdate) => {
+  return EnquiryModel.findByIdAndUpdate(id, detailsToUpdate, { new: true });
+};
 
 export default EnquiryModel;
 

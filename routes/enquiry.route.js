@@ -10,4 +10,8 @@ router.post('/', (req, res) => {
   enquiryController.addEnquiry(req, res);
 });
 
+router.put("/:id", (req, res) => {
+  enquiryController.update(req, res);
+});
+
 export default router;

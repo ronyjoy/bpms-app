@@ -36,12 +36,12 @@ export default {
       children: [
         {
           name: 'List Enquiry',
-          url: '/customer',
+          url: '/dashboard/enquiries',
           icon: 'icon-list',
         },
         {
           name: 'Add Enquiry',
-          url: '/base/cards',
+          url: '/dashboard/addenquiry',
           icon: 'icon-magnifier-add',
         }
      
