@@ -2,16 +2,18 @@ import React, { Component } from 'react';
 
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-blue.css';
+import "ag-grid-community/dist/styles/ag-grid.css";
+import "ag-grid-community/dist/styles/ag-theme-material.css";
 import axios from 'axios';
+import { connect } from "react-redux";
+import { fetchEnquries } from "../../actions/enquiryActions";
 
 class ListEnquiry extends Component {
 
   componentDidMount() {
-    fetch('/api/enquiry')
-      .then(result => result.json())
-      .then(rowData => this.setState({ rowData }))
+    this.props.dispatch(fetchEnquries());
   }
+
 
   onCellValueChanged = (item ) =>{
     console.log(item);
@@ -26,7 +28,7 @@ class ListEnquiry extends Component {
         { headerName: "Enquiry Id", field: "enquiry_id" ,sortable: true,filter: "agTextColumnFilter"},
         { headerName: "Enquriy Date", field: "enquiry_date" ,filter: "agTextColumnFilter"},
         { headerName: "Enquiry Description", field: "enquiry_description" ,sortable: true,filter: "agTextColumnFilter"},
-        { headerName: "Customer", field: "customer_id" ,sortable: true,filter: "agTextColumnFilter"},
+        { headerName: "Customer", field: "customername" ,sortable: true,filter: "agTextColumnFilter"},
       ],
       paginationPageSize: 20,
       defaultColDef: {
@@ -63,9 +65,18 @@ class ListEnquiry extends Component {
 }
 
   render() {
+    const { loading, error, enquiries } = this.props;
+    
+    if (loading) {
+      return <div>Loading...</div>;
+    }
+    if (error) {
+      return <div>Error! {error.message}</div>;
+    }
+    if (!loading) {
     return (
       <div
-        className="ag-theme-blue"
+        className="ag-theme-material"
       >
          <AgGridReact
             columnDefs={this.state.columnDefs}
@@ -82,12 +93,18 @@ class ListEnquiry extends Component {
             pagination={true}
             onGridReady={this.onGridReady}
             onRowValueChanged ={this.onRowValueChanged}
-            rowData={this.state.rowData}
+            rowData={enquiries}
           />
       </div>
     );
+    }
   }
 }
 
+const mapStateToProps = state => ({
+  loading: state.listenquiry.loading,
+  enquiries: state.listenquiry.data,
+  error: state.listenquiry.error
+});
 
-export default ListEnquiry;
+export default connect(mapStateToProps)(ListEnquiry);

@@ -6,13 +6,7 @@ import { LinearProgress, MenuItem } from '@material-ui/core';
 import * as Yup from 'yup'
 import isEmpty from 'lodash/isEmpty';
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import Badge from '@material-ui/core/Badge';
 import Alert from 'react-s-alert';
 import {
 	fieldToTextField,
