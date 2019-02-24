@@ -21,8 +21,8 @@ controller.add = async (req, res) => {
     logger.info("adding Customer...");
     res.send(customer);
   } catch (err) {
-    logger.error("Error in adding customer" + err);
-    res.send("Got error in add customer");
+    logger.error("Error adding customer" + err);
+    res.status(500).send({"error":{"message":"Duplicate Customer Name"}});
   }
 };
 

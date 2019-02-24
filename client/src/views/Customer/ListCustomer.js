@@ -1,35 +1,43 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { AgGridReact } from 'ag-grid-react';
-import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-material.css';
-import axios from 'axios';
+import { AgGridReact } from "ag-grid-react";
+import "ag-grid-community/dist/styles/ag-grid.css";
+import "ag-grid-community/dist/styles/ag-theme-material.css";
+import axios from "axios";
+import { connect } from "react-redux";
+import { fetchCustomer } from "../../actions/customerActions";
 
 class ListCustomer extends Component {
-
   componentDidMount() {
-    fetch('/api/customer')
-      .then(result => result.json())
-      .then(rowData => this.setState({ rowData }))
+    this.props.dispatch(fetchCustomer());
   }
 
-  onCellValueChanged = (item ) =>{
+  onCellValueChanged = item => {
     console.log(item);
-    item.newOrModified="Modified";
-   }
+    item.newOrModified = "Modified";
+  };
 
   constructor(props) {
     super(props);
 
     this.state = {
       columnDefs: [
-        { headerName: "Customer Name", field: "customername" ,sortable: true,filter: "agTextColumnFilter"},
-        { headerName: "Contact Person", field: "contactperson" ,sortable: true,filter: "agTextColumnFilter"},
-        { headerName: "Email", field: "email" ,filter: "agTextColumnFilter"},
-        { headerName: "Phone", field: "phone",filter: "agTextColumnFilter"},
+        {
+          headerName: "Customer Name",
+          field: "customername",
+          sortable: true,
+          filter: "agTextColumnFilter"
+        },
+        {
+          headerName: "Contact Person",
+          field: "contactperson",
+          sortable: true,
+          filter: "agTextColumnFilter"
+        },
+        { headerName: "Email", field: "email", filter: "agTextColumnFilter" },
+        { headerName: "Phone", field: "phone", filter: "agTextColumnFilter" },
         { headerName: "Address", field: "address" },
-        { headerName: "Status", field: "status" },
-
+        { headerName: "Status", field: "status" }
       ],
       paginationPageSize: 20,
       defaultColDef: {
@@ -45,32 +53,39 @@ class ListCustomer extends Component {
       rowGroupPanelShow: "always",
       pivotPanelShow: "always",
       editType: "fullRow"
-    }
-    
+    };
   }
 
-  onRowValueChanged =(params) => {
+  onRowValueChanged = params => {
     console.log(params.data);
-    axios.put('/api/customer/'+params.data._id , params.data) 
-    .then(function (response) {
-      // handle success
-      console.log('update success' + response);
+    axios
+      .put("/api/customer/" + params.data._id, params.data)
+      .then(function(response) {
+        // handle success
+        console.log("update success" + response);
       })
-      .catch(function (error) {
-      // handle error
-      console.log(error);
+      .catch(function(error) {
+        // handle error
+        console.log(error);
       })
-      .then(function () {
-      // always executed
+      .then(function() {
+        // always executed
       });
-}
+  };
 
   render() {
-    return (
-      <div
-        className="ag-theme-material"
-      >
-         <AgGridReact
+    const { loading, error, customers } = this.props;
+    console.log(loading);
+    if (loading) {
+      return <div>Loading...</div>;
+    }
+    if (error) {
+      return <div>Error! {error.message}</div>;
+    }
+    if (!loading) {
+      return (
+        <div className="ag-theme-material">
+          <AgGridReact
             columnDefs={this.state.columnDefs}
             autoGroupColumnDef={this.state.autoGroupColumnDef}
             defaultColDef={this.state.defaultColDef}
@@ -85,13 +100,19 @@ class ListCustomer extends Component {
             pagination={true}
             paginationPageSize={this.state.paginationPageSize}
             onGridReady={this.onGridReady}
-            onRowValueChanged ={this.onRowValueChanged}
-            rowData={this.state.rowData}
+            onRowValueChanged={this.onRowValueChanged}
+            rowData={customers}
           />
-      </div>
-    );
+        </div>
+      );
+    }
   }
 }
 
+const mapStateToProps = state => ({
+  loading: state.listcustomer.loading,
+  customers: state.listcustomer.data,
+  error: state.listcustomer.error
+});
 
-export default ListCustomer;
+export default connect(mapStateToProps)(ListCustomer);

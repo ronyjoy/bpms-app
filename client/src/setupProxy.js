@@ -6,6 +6,11 @@ module.exports = function(app) {
     
     ));
     app.use(proxy(
+        '/login', 
+        { target: 'http://localhost:5000/' },
+    
+    ));
+    app.use(proxy(
         '/callback', 
         { target: 'http://localhost:5000/' },
     
