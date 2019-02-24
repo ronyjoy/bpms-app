@@ -8,15 +8,11 @@ import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Alert from 'react-s-alert';
 import { connect } from 'react-redux';
-import {addCustomer} from '../../actions'
+import {addCustomer} from '../../actions/customerActions'
 
 import {
-	fieldToTextField,
 	TextField,
-	TextFieldProps,
-	Select,
 } from 'formik-material-ui';
-import { ADD_CUSTOMER } from '../../actions/types';
  
 
 const styles = theme => ({
@@ -42,7 +38,7 @@ const styles = theme => ({
 // Async Validation
 class AddCustomer extends React.Component {
 
-	addCustomer = data => {
+	addCustomer = async (data) => {
     this.props.dispatch(addCustomer(data));
   }
 

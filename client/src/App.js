@@ -5,7 +5,7 @@ import Loadable from "react-loadable";
 import "./App.scss";
 import PrivateRoute from "./PrivateRoute";
 import { connect } from "react-redux";
-import * as actions from "./actions";
+import {fetchUser} from "./actions/authActions";
 import Alert from "react-s-alert";
 const loading = () => (
   <div className="animated fadeIn pt-3 text-center">Loading...</div>
@@ -49,7 +49,7 @@ const Page500 = Loadable({
 
 class App extends Component {
   componentDidMount() {
-    this.props.fetchUser();
+    this.props.dispatch(fetchUser());
   }
 
   render() {
@@ -59,12 +59,12 @@ class App extends Component {
           <Switch>
             <Redirect exact from="/" to="/login/" />
             <Route exact path="/login" name="Login Page" component={Login} />
-            <Route path="/dashboard/" component={DefaultLayout} />
-            <Route
+            <PrivateRoute path="/dashboard/" component={DefaultLayout} />
+            <PrivateRoute
               path="/dashboard/addcustomer/"
               component={AddCustomer}
             />
-            <Route
+            <PrivateRoute
               path="/dashboard/customers/"
               component={ListCustomer}
             />
@@ -83,6 +83,5 @@ class App extends Component {
 }
 
 export default connect(
-  null,
-  actions
+  null
 )(App);

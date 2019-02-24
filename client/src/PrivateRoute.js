@@ -1,20 +1,26 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-const PrivateRoute = ({ component: Component, auth, ...rest }) => (
+
+const PrivateRoute = ({ component: Component, auth, loading,  ...rest }) => (
+    console.log(auth.email),
+    loading === true ? "":
     <Route
         {...rest}
         render={props =>
-            auth === false ? (
+            auth.email === undefined ? (
                 <Redirect to="/login" />
             ) : (
                     <Component {...props} />
                 )
         }
     />
+    
 );
 
-function mapStateToProps({ auth }) {
-    return { auth };
-}
+const mapStateToProps = state => ({ 
+    loading: state.auth.loading,
+    auth:state.auth.data,
+    error:state.auth.error
+});
 export default connect(mapStateToProps)(PrivateRoute);

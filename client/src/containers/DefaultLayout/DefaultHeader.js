@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { Badge, DropdownItem, DropdownMenu, DropdownToggle, Nav, NavItem, NavLink } from 'reactstrap';
 import PropTypes from 'prop-types';
 
@@ -18,7 +17,7 @@ class DefaultHeader extends Component {
   render() {
 
     // eslint-disable-next-line
-    const { children, ...attributes } = this.props;
+    const {  auth, children, ...attributes } = this.props;
 
     return (
       <React.Fragment>
@@ -47,7 +46,7 @@ class DefaultHeader extends Component {
           </NavItem>
           <AppHeaderDropdown direction="down">
             <DropdownToggle nav>
-              <img src={!(this.props.auth)?'../../assets/img/avatars/6.jpg':this.props.auth.image} className="img-avatar" alt="user" />
+              <img src={(auth.image===undefined)?'../../assets/img/avatars/6.jpg':auth.image} className="img-avatar" alt="user" />
             </DropdownToggle>
             <DropdownMenu right style={{ right: 'auto' }}>
               <DropdownItem header tag="div" className="text-center"><strong>Account</strong></DropdownItem>
@@ -68,9 +67,11 @@ class DefaultHeader extends Component {
 DefaultHeader.propTypes = propTypes;
 DefaultHeader.defaultProps = defaultProps;
 
-function mapStateToProps({ auth }) {
-  return { auth };
-}
+const mapStateToProps = state => ({ 
+  loading: state.auth.loading,
+  auth:state.auth.data,
+  error:state.auth.error
+});
 
 export default connect(mapStateToProps)(DefaultHeader);
 

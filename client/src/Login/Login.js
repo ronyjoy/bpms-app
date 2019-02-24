@@ -3,14 +3,7 @@ import { Button, Card, CardBody, CardGroup, Col, Container, Form, Row } from 're
 import { connect } from 'react-redux';
 
 class Login extends Component {
-
-  componentDidMount() {
-    // If logged in and user navigates to Login page, should redirect them to dashboard
-    if (this.props.auth) {
-      this.props.history.push("/dashboard");
-    }
-  }
-  render() {
+ render() {
     return (
       <div className="app flex-row align-items-center">
         <Container>
