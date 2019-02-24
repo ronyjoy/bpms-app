@@ -1,14 +1,15 @@
 import React from 'react';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
-import axios from 'axios';
+import { Formik, Field, Form } from 'formik';
 import Button from '@material-ui/core/Button';
-import { LinearProgress, MenuItem } from '@material-ui/core';
+import { LinearProgress } from '@material-ui/core';
 import * as Yup from 'yup'
 import isEmpty from 'lodash/isEmpty';
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Alert from 'react-s-alert';
+import { connect } from 'react-redux';
+import {addCustomer} from '../../actions/customerActions'
+
 import {
 	TextField,
 } from 'formik-material-ui';
@@ -37,7 +38,11 @@ const styles = theme => ({
 // Async Validation
 class AddCustomer extends React.Component {
 
-	
+	addCustomer = async (data) => {
+    this.props.dispatch(addCustomer(data));
+  }
+
+
 	validationSchema = Yup.object().shape({
 		email: Yup.string()
 			.email('E-mail is not valid!')
@@ -56,7 +61,6 @@ class AddCustomer extends React.Component {
 	
 	render() {
 
-	
 		const { classes } = this.props;
 		return (
 
@@ -65,25 +69,14 @@ class AddCustomer extends React.Component {
 				validationSchema={this.validationSchema}
 				onSubmit={(values, actions) => {
 					console.log(values);
-					//Make API calls here
-					axios.post("/api/customer", values)
-						.then(function (response) {
-							// handle success
-							console.log(response);
-						})
-						.catch(function (error) {
-							// handle error
-							console.log(error);
-						})
-						.then(function () {
-							actions.setSubmitting(false);
-							actions.resetForm({ customername: "", contactperson: "", address: "", email: "", phone: "" });
-							Alert.info('Customer Saved', {
+					this.addCustomer(values);
+					actions.setSubmitting(false);
+					actions.resetForm({ customername: "", contactperson: "", address: "", email: "", phone: "" });
+					Alert.info('Customer Saved', {
 								position: 'top-right',
 								effect: 'scale',
 								offset: 80
 							  });
-						});
 				}}
 				render={x => (
 					<Form>
@@ -97,9 +90,6 @@ class AddCustomer extends React.Component {
 						<br />
 						<Button className={classes.button} type="submit" variant="contained" color="primary" disabled={x.isSubmitting || !isEmpty(x.errors) || !x.dirty} > Submit</Button>
 						<Button className={classes.button} type="reset" variant="contained" color="primary">Reset</Button>
-
-
-
 					</Form >
 				)}
 			/>
@@ -108,5 +98,10 @@ class AddCustomer extends React.Component {
 	}
 }
 
-export default withStyles(styles)(AddCustomer);
+
+const mapStateToProps = state => ({
+  customers: state.customer
+});
+
+export default connect(mapStateToProps)( withStyles(styles)(AddCustomer));
 

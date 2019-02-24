@@ -33,7 +33,7 @@ OrganizationModel.getByNameAndEmpEmail = async (orgName, empEmail) => {
     name: orgName,
     employees: { $elemMatch: { email: empEmail } }
   });
-  logger.info('GetOrgbyNameandempemail %s, %s, %o' , orgName,empEmail,org);
+  logger.info('getByNameAndEmpEmail %s, %s, %o' , orgName,empEmail,org);
   return org;
 };
 

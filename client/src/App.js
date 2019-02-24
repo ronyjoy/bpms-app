@@ -5,7 +5,7 @@ import Loadable from "react-loadable";
 import "./App.scss";
 import PrivateRoute from "./PrivateRoute";
 import { connect } from "react-redux";
-import * as actions from "./actions";
+import {fetchUser} from "./actions/authActions";
 import Alert from "react-s-alert";
 const loading = () => (
   <div className="animated fadeIn pt-3 text-center">Loading...</div>
@@ -32,11 +32,6 @@ const Login = Loadable({
   loading
 });
 
-const Register = Loadable({
-  loader: () => import("./views/Pages/Register"),
-  loading
-});
-
 const Page404 = Loadable({
   loader: () => import("./views/Pages/Page404"),
   loading
@@ -54,7 +49,7 @@ const Page500 = Loadable({
 
 class App extends Component {
   componentDidMount() {
-    this.props.fetchUser();
+    this.props.dispatch(fetchUser());
   }
 
   render() {
@@ -88,6 +83,5 @@ class App extends Component {
 }
 
 export default connect(
-  null,
-  actions
+  null
 )(App);
