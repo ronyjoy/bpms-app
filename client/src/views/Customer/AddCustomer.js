@@ -1,25 +1,19 @@
 import React from 'react';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
-import axios from 'axios';
+import { Formik, Field, Form } from 'formik';
 import Button from '@material-ui/core/Button';
-import { LinearProgress, MenuItem } from '@material-ui/core';
+import { LinearProgress } from '@material-ui/core';
 import * as Yup from 'yup'
 import isEmpty from 'lodash/isEmpty';
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import Badge from '@material-ui/core/Badge';
 import Alert from 'react-s-alert';
+import { connect } from 'react-redux';
+import {addCustomer} from '../../actions/customerActions'
+
 import {
-	fieldToTextField,
 	TextField,
-	TextFieldProps,
-	Select,
 } from 'formik-material-ui';
+<<<<<<< HEAD
 import Autosuggest from 'react-autosuggest';
 import theme from '../../assets/css/autocomplete.css';
 
@@ -68,6 +62,9 @@ const renderSuggestion = suggestion => (
 
 
 
+=======
+ 
+>>>>>>> development
 
 const styles = theme => ({
 	root: {
@@ -92,6 +89,7 @@ const styles = theme => ({
 // Async Validation
 class AddCustomer extends React.Component {
 
+<<<<<<< HEAD
 	constructor() {
 		super();
 
@@ -127,6 +125,11 @@ class AddCustomer extends React.Component {
 		});
 	};
 
+=======
+	addCustomer = async (data) => {
+    this.props.dispatch(addCustomer(data));
+  }
+>>>>>>> development
 
 
 	validationSchema = Yup.object().shape({
@@ -147,6 +150,7 @@ class AddCustomer extends React.Component {
 
 	render() {
 
+<<<<<<< HEAD
 		const { value, suggestions } = this.state;
 
 		// Autosuggest will pass through all these props to the input.
@@ -156,6 +160,8 @@ class AddCustomer extends React.Component {
 			onChange: this.onChange
 		};
 
+=======
+>>>>>>> development
 		const { classes } = this.props;
 		return (
 
@@ -173,25 +179,19 @@ class AddCustomer extends React.Component {
 						});
 					});
 					console.log(values);
-					//Make API calls here
-					axios.post("/api/customer", values)
-						.then(function (response) {
-							// handle success
-							console.log(response);
-						})
-						.catch(function (error) {
-							// handle error
-							console.log(error);
-						})
-						.then(function () {
-							actions.setSubmitting(false);
-							actions.resetForm({ customername: "", contactperson: "", address: "", email: "", phone: "" });
-							Alert.info('Customer Saved', {
+					this.addCustomer(values);
+					actions.setSubmitting(false);
+					actions.resetForm({ customername: "", contactperson: "", address: "", email: "", phone: "" });
+					Alert.info('Customer Saved', {
 								position: 'top-right',
 								effect: 'scale',
 								offset: 80
+<<<<<<< HEAD
 							});
 						});
+=======
+							  });
+>>>>>>> development
 				}}
 				render={x => (
 					<Form>
@@ -203,20 +203,8 @@ class AddCustomer extends React.Component {
 						<br />
 						{x.isSubmitting && <LinearProgress />}
 						<br />
-						{/* <Autosuggest
-			
-        suggestions={suggestions}
-        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-        getSuggestionValue={getSuggestionValue}
-        renderSuggestion={renderSuggestion}
-        inputProps={inputProps}
-      /> */}
 						<Button className={classes.button} type="submit" variant="contained" color="primary" disabled={x.isSubmitting || !isEmpty(x.errors) || !x.dirty} > Submit</Button>
 						<Button className={classes.button} type="reset" variant="contained" color="primary">Reset</Button>
-
-
-
 					</Form >
 				)}
 			/>
@@ -225,5 +213,10 @@ class AddCustomer extends React.Component {
 	}
 }
 
-export default withStyles(styles)(AddCustomer);
+
+const mapStateToProps = state => ({
+  customers: state.customer
+});
+
+export default connect(mapStateToProps)( withStyles(styles)(AddCustomer));
 

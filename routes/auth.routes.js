@@ -39,6 +39,13 @@ router.get(
     res.redirect("/");
   }
 );
+router.get(
+  "/login",
+  passport.authenticate("auth0", { failureRedirect: "/login" }),
+  function(req, res) {
+    res.redirect("/");
+  }
+);
 
 router.get("/api/current_user", (req, res) => {
   res.send(req.user);
