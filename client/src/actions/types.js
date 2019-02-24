@@ -5,3 +5,5 @@ export const FETCH_CUSTOMER ='fetch_customer';
 export const FETCH_CUSTOMER_SUCCESS ='fetch_customer_success';
 export const FETCH_CUSTOMER_FAILURE ='fetch_customer_failure';
 export const ADD_CUSTOMER ='add_customer';
+export const ADD_CUSTOMER_SUCCESS ='add_customer_success';
+export const ADD_CUSTOMER_FAILURE ='add_customer_failure';

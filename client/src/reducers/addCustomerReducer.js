@@ -1,36 +1,36 @@
 import {
-  FETCH_CUSTOMER,
   ADD_CUSTOMER,
-  FETCH_CUSTOMER_FAILURE,
-  FETCH_CUSTOMER_SUCCESS
+  ADD_CUSTOMER_SUCCESS,
+  ADD_CUSTOMER_FAILURE
 } from "../actions/types";
 const initialState = {
   loading: true,
   data: {},
-  error:null
+  error: null
 };
 
 export default function(state = initialState, action) {
-  switch (action.type) {
-    case FETCH_CUSTOMER:
+  console.log(action.type);
+  console.log(action.error);  switch (action.type) {
+    case ADD_CUSTOMER:
       return {
         ...state,
-        loading: true
+        loading: true,
+        error:null
       };
-    case FETCH_CUSTOMER_SUCCESS:
+    case ADD_CUSTOMER_SUCCESS:
       return {
         ...state,
         data: action.payload,
-        loading: false
+        loading: false,
+        error:null
       };
-    case FETCH_CUSTOMER_FAILURE:
+    case ADD_CUSTOMER_FAILURE:
       return {
         ...state,
         error: action.error,
         loading: false
       };
-    case ADD_CUSTOMER:
-      return action.payload || false;
     default:
       return state;
   }

@@ -1,17 +1,13 @@
 import mongoose from 'mongoose';
+var uniqueValidator = require('mongoose-unique-validator');
 var Schema = mongoose.Schema;
 
-mongoose.set("useCreateIndex", true);
 
 var customerSchema = new Schema({
   image: String,
   name: String,
   viewers: Number,
-  customername: {
-    type: String,
-    index: true,
-    unique: true
-  },
+  customername: {type: String,index: true, unique: true},
   email: String,
   contactperson: String,
   phone: String,
@@ -22,6 +18,7 @@ var customerSchema = new Schema({
 });
 
 let CustomerModel = mongoose.model("customers", customerSchema);
+customerSchema.plugin(uniqueValidator);
 
 CustomerModel.getAll = () => {
   return CustomerModel.find({});

@@ -40,8 +40,16 @@ class AddCustomer extends React.Component {
 
 	addCustomer = async (data) => {
     this.props.dispatch(addCustomer(data));
-  }
+	}
 
+	handleSubmit = (values, actions) => {
+ 		this.addCustomer(values);
+		actions.resetForm({ customername: "", contactperson: "", address: "", email: "", phone: "" });
+		actions.setSubmitting(false);
+		actions.setSubmitting(false);
+		return;
+	}
+	
 
 	validationSchema = Yup.object().shape({
 		email: Yup.string()
@@ -61,32 +69,28 @@ class AddCustomer extends React.Component {
 
 	render() {
 
-		const { classes } = this.props;
+		const { classes,loading, error } = this.props;
+		
+		if(!loading && error!=null) {
+			Alert.info('Error Saving the Customer', {
+				position: "top-right",
+				effect: "scale",
+				offset: 80
+			});
+		}
+		if(!loading && error ==null) {
+			Alert.info('Customer Saved', {
+					position: 'top-right',
+					effect: 'scale',
+					offset: 80
+					});
+		} 
+		
 		return (
-
 			<Formik
 				initialValues={{ customername: "", contactperson: "", address: "", email: "", phone: "" }}
 				validationSchema={this.validationSchema}
-				onSubmit={(values, actions) => {
-					fetch("/api/customer" + values.customername).then(function () {
-						console.log("User already exists!");
-						actions.setSubmitting(false);
-						Alert.info("Customer Already exists!", {
-							position: "top-right",
-							effect: "scale",
-							offset: 80
-						});
-					});
-					console.log(values);
-					this.addCustomer(values);
-					actions.setSubmitting(false);
-					actions.resetForm({ customername: "", contactperson: "", address: "", email: "", phone: "" });
-					Alert.info('Customer Saved', {
-								position: 'top-right',
-								effect: 'scale',
-								offset: 80
-							  });
-				}}
+				onSubmit={this.handleSubmit}
 				render={x => (
 					<Form>
 						<Field type="text" variant="outlined" className={classNames(classes.margin, classes.textField)} label="Customer Name" name="customername" placeholder="ABC Customer" component={TextField} />
@@ -109,7 +113,9 @@ class AddCustomer extends React.Component {
 
 
 const mapStateToProps = state => ({
-  customers: state.customer
+  loading: state.addcustomer.loading,
+  customeradded: state.addcustomer.data,
+  error: state.addcustomer.error
 });
 
 export default connect(mapStateToProps)( withStyles(styles)(AddCustomer));

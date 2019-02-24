@@ -110,9 +110,9 @@ class ListCustomer extends Component {
 }
 
 const mapStateToProps = state => ({
-  loading: state.customer.loading,
-  customers: state.customer.data,
-  error: state.customer.error
+  loading: state.listcustomer.loading,
+  customers: state.listcustomer.data,
+  error: state.listcustomer.error
 });
 
 export default connect(mapStateToProps)(ListCustomer);

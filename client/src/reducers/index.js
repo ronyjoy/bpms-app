@@ -1,8 +1,11 @@
 import {combineReducers} from 'redux';
 import authReducer from './authReducer';
-import customerReducer from './cutomerReducer';
+import listCustomerReducer from './listCustomerReducer';
+import addCustomerReducer from './addCustomerReducer';
 
 export default combineReducers({
     auth:authReducer,
-    customer:customerReducer
+    listcustomer:listCustomerReducer,
+    addcustomer:addCustomerReducer
+
 })
