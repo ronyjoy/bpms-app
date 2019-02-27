@@ -25,10 +25,12 @@ class ListEnquiry extends Component {
 
     this.state = {
       columnDefs: [
-        { headerName: "Enquiry Id", field: "enquiry_id" ,sortable: true,filter: "agTextColumnFilter"},
-        { headerName: "Enquriy Date", field: "enquiry_date" ,filter: "agTextColumnFilter"},
-        { headerName: "Enquiry Description", field: "enquiry_description" ,sortable: true,filter: "agTextColumnFilter"},
-        { headerName: "Customer", field: "customername" ,sortable: true,filter: "agTextColumnFilter"},
+        { headerName: "Id", field: "id" ,sortable: true,filter: "agTextColumnFilter"},
+        { headerName: "Date", field: "enq_date" ,filter: "agTextColumnFilter"},
+        { headerName: "Time", field: "enq_time" ,filter: "agTextColumnFilter"},
+        { headerName: "Exp Date", field: "exp_date" ,filter: "agTextColumnFilter"},
+        { headerName: "Enquiry Description", field: "description" ,sortable: true,filter: "agTextColumnFilter"},
+        { headerName: "Customer", field: "customer" ,sortable: true,filter: "agTextColumnFilter"},
       ],
       paginationPageSize: 20,
       defaultColDef: {

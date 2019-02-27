@@ -65,7 +65,7 @@ class ListCustomer extends Component {
 
   render() {
     const { loading, error, customers } = this.props;
-    
+    console.log(loading);
     if (loading) {
       return <div>Loading...</div>;
     }

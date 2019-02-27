@@ -1,189 +1,129 @@
-import React from 'react';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
-import axios from 'axios';
-import Button from '@material-ui/core/Button';
-import { LinearProgress, MenuItem } from '@material-ui/core';
-import * as Yup from 'yup'
-import isEmpty from 'lodash/isEmpty';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import Alert from 'react-s-alert';
 import {
-	fieldToTextField,
-	TextField,
-	TextFieldProps,
-	Select,
-} from 'formik-material-ui';
-import Autosuggest from 'react-autosuggest';
-import theme from '../../assets/css/autocomplete.css';
+  Form, Select, Input, Button,DatePicker,TimePicker,AutoComplete,Slider,Radio,Icon
+} from 'antd';
+import React from 'react';
+import { connect } from 'react-redux';
+import {addEnquiry} from '../../actions/enquiryActions'
+import {fetchCustomerNames} from '../../actions/customerActions'
+import Alert from 'react-s-alert';
+import 'antd/dist/antd.css';
 
-const styles = theme => ({
-	root: {
-		display: 'flex',
-		flexWrap: 'wrap',
-	},
-	margin: {
-		margin: theme.spacing.unit,
-	},
-	textField: {
-		flexBasis: 200,
-	},
-	button: {
-		margin: theme.spacing.unit,
-	},
-	input: {
-		display: 'none',
-	},
-});
 
- 
-// Teach Autosuggest how to calculate suggestions for any given input value.
-const getSuggestions =(customers, value)=> {
-  const inputValue = value.trim().toLowerCase();
-  const inputLength = inputValue.length;
- console.log(customers);
-	return inputLength === 0 ? [] : customers.filter(customer =>
-		checkCustomerNameMatching(customer,inputLength,inputValue)
-  );
-};
-const checkCustomerNameMatching = (customer,inputLength,inputValue) =>{
-	console.log(customer.customername);
-	if(customer.customername) {
-		return customer.customername.toLowerCase().slice(0, inputLength) === inputValue
-	} else {
-		return false;
-	}
-};
-// When suggestion is clicked, Autosuggest needs to populate the input
-// based on the clicked suggestion. Teach Autosuggest how to calculate the
-// input value for every given suggestion.
-const getSuggestionValue = suggestion => suggestion.customername;
- 
-// Use your imagination to render suggestions.
-const renderSuggestion = suggestion => (
-  <div>
-    {suggestion.customername}
-  </div>
-);
- 
+const { Option } = Select;
+const { TextArea } = Input;
 
-// Async Validation
 class AddEnquiry extends React.Component {
 
 	componentDidMount() {
-		fetch('/api/customer')
-			.then(result => result.json())
-			.then(customers => this.setState({customers : customers}) )
+    this.props.dispatch(fetchCustomerNames());
 	}
 	
-	constructor() {
-		super();
-	 
-		// Autosuggest is a controlled component.
-		// This means that you need to provide an input value
-		// and an onChange handler that updates this value (see below).
-		// Suggestions also need to be provided to the Autosuggest,
-		// and they are initially empty because the Autosuggest is closed.
-		this.state = {
-			customers :[],
-		  value: '',
-		  suggestions: []
-		};
-	  }
-	 
-	  onChange = (event, { newValue }) => {
-		this.setState({
-		  value: newValue
-		});
-	  };
-	 
-	  // Autosuggest will call this function every time you need to update suggestions.
-	  // You already implemented this logic above, so just use it.
-	  onSuggestionsFetchRequested = ({ value }) => {
-
-		this.setState({
-			suggestions: getSuggestions(this.state.customers,value)
-		});
-	  };
-	 
-	  // Autosuggest will call this function every time you need to clear suggestions.
-	  onSuggestionsClearRequested = () => {
-		this.setState({
-		  suggestions: []
-		});
-	  };
-
-
-	validationSchema = Yup.object().shape({
-		enquiry_date: Yup.string()
-			.required('Enquiry Date is required!'),
-		enquiry_description: Yup.string()
-			.required('Address is required!'),
-	})
-
-	render() {		
-		const { value, suggestions } = this.state;
-		const { classes } = this.props;
-
-		// Autosuggest will pass through all these props to the input.
-		const inputProps = {
-		  placeholder: 'Select a Customer',
-		  value,
-		  onChange: this.onChange
-		};
-
-		return (
-			<Formik
-				initialValues={{ enquiry_date: "", enquiry_description: "" }}
-				validationSchema={this.validationSchema}
-				onSubmit={(values, actions) => {
-					console.log(values);
-					//Make API calls here
-					axios.post("/api/enquiry", values)
-						.then(function (response) {
-							// handle success
-							console.log(response);
-						})
-						.catch(function (error) {
-							// handle error
-							console.log(error);
-						})
-						.then(function () {
-							actions.setSubmitting(false);
-							actions.resetForm({ enquiry_date: "", enquiry_description: "" });
-							Alert.info('Enquiry Saved', {
-								position: 'top-right',
-								effect: 'scale',
-								offset: 80
-							  });
-						});
-				}}
-				render={x => (
-					<Form>
-						<Field type="text" variant="outlined" className={classNames(classes.margin, classes.textField)} label="Enquiry Date" name="enquiry_date" placeholder="" component={TextField} />
-						<Field type="text" variant="outlined" className={classNames(classes.margin, classes.textField)} label="Enquiry Description" name="enquiry_description" placeholder="" component={TextField} />
-						<br />
-						{x.isSubmitting && <LinearProgress />}
-						<br />
-						{
-						<Autosuggest
-						suggestions={suggestions}
-						onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-						onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-						getSuggestionValue={getSuggestionValue}
-						renderSuggestion={renderSuggestion}
-					inputProps={inputProps}
-						/> }
-			
-						<Button className={classes.button} type="submit" variant="contained" color="primary" disabled={x.isSubmitting || !isEmpty(x.errors) || !x.dirty} > Submit</Button>
-						<Button className={classes.button} type="reset" variant="contained" color="primary">Reset</Button>
-					</Form >
-				)}
-			/>
-		);
+	saveEnquiry(data) {
+		this.props.dispatch(addEnquiry(data))
 	}
+
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+				console.log('Received values of form: ', values);
+        this.props.dispatch(addEnquiry(values))
+        
+      }
+    });
+  }
+
+  render() {
+    let dataSource = ['loading data'];
+		const { getFieldDecorator } = this.props.form;
+    const { customerNames, customerLoading,addEnquiryProcessing, enquiryadded,addEnquiryError } = this.props;
+    if(!customerLoading) {
+      dataSource = customerNames;
+    }
+    if(!addEnquiryProcessing && addEnquiryError ==null && enquiryadded) {
+			Alert.info('Enquiry Saved', {
+					position: 'top-right',
+					effect: 'scale',
+					offset: 80
+					});
+		} 
+
+	
+    return (
+      <Form layout="inline" onSubmit={this.handleSubmit}>
+        <Form.Item label="Enquiry Date" >
+          {getFieldDecorator('enq_date', {rules: [{ required: true, message: 'Enquiry date' }],})(
+            <DatePicker  />
+          )}
+        </Form.Item>
+      	<Form.Item label="Time Received">
+				{getFieldDecorator('enq_time', {rules: [{ required: true, message: 'Enquiry time' }],})(
+            <TimePicker />
+          )}
+				</Form.Item>
+				<Form.Item label="Expiry Date" >
+          {getFieldDecorator('exp_date', {rules: [{ required: true, message: 'Expiry date' }],})(
+            <DatePicker  />
+          )}
+        </Form.Item>
+        <Form.Item label="Customer">
+					{getFieldDecorator('customer', {rules: [{ required: true, message: 'Customer!' }],})(
+            <AutoComplete
+							className="global-search"
+							style={{ width: 200 }}
+							dataSource={dataSource}
+							placeholder="search customer"
+							filterOption={(inputValue, option) => option.props.children.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
+						>
+						<Input suffix={<Icon type="search" className="certain-category-icon" />} />
+					</AutoComplete>
+						
+					)}
+        </Form.Item>
+        <Form.Item label="Customer Contact">
+          {getFieldDecorator('contactPerson', {rules: [{ required: true, message: 'Contact Person' }],})(
+            <Input />
+          )}
+        </Form.Item>
+        <Form.Item label="Customer Contact Phone">
+          {getFieldDecorator('contactPhone', {rules: [{ required: true, message: 'Contact Person Phone' }],})(
+            <Input />
+          )}
+        </Form.Item>
+        <Form.Item label="Customer Contact email">
+          {getFieldDecorator('contactEmail', {rules: [{ required: true, message: 'Contact Person Phone' }],})(
+            <Input />
+          )}
+        </Form.Item>
+        <Form.Item label="Description">
+          {getFieldDecorator('description', {rules: [{ required: true, message: 'Enquiry Description' }],})(
+            <TextArea rows={4} />
+          )}
+        </Form.Item>
+				<Form.Item label="Enquiry Priority"
+        >
+          {getFieldDecorator('priority')(
+            <Radio.Group defaultValue="c" buttonStyle="solid">
+						<Radio.Button value="LOW">LOW</Radio.Button>
+						<Radio.Button value="MED">MED</Radio.Button>
+						<Radio.Button value="HIGH">HIGH</Radio.Button>
+					</Radio.Group>
+          )}
+        </Form.Item>
+				
+        <Form.Item><Button type="primary" htmlType="submit">Submit</Button></Form.Item>
+      </Form>
+    );
+  }
 }
 
+const mapStateToProps = state => ({
+  addEnquiryProcessing: state.addenquiry.loading,
+  enquiryadded: state.addenquiry.data,
+	addEnquiryError: state.addenquiry.error,
+	customerLoading:state.listcustomer.loading,
+	customerNames:state.listcustomer.customerNames
+});
 
-
-export default withStyles(styles)(AddEnquiry);
+export default connect(mapStateToProps)(Form.create({ name: 'coordinated' })(AddEnquiry));
