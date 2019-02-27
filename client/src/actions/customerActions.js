@@ -9,12 +9,6 @@ export const fetchCustomer = () => async dispatch => {
     const res = await axios.get("/api/customer");
     console.log(res.data);
     dispatch({type: FETCH_CUSTOMER_SUCCESS,payload: res.data});
-    var customerNames = [];
-    res.data.forEach(customer => {
-      customerNames.push(customer.customername);
-    });
-    console.log(customerNames);
-    dispatch({type: FETCH_CUSTOMER_NAME_SUCCESS,payload: customerNames});
   } catch (err) {
     // Update error in reducer on failure
     dispatch({type: FETCH_CUSTOMER_FAILURE, error: err});
