@@ -21,7 +21,7 @@ export const fetchCustomerNames = () => async dispatch => {
     const res = await axios.get("/api/customer");
     var customerNames = [];
     res.data.forEach(customer => {
-      customerNames.push(""+customer.customername);
+      customerNames.push(""+customer.name);
     });
     console.log(customerNames);
     dispatch({type: FETCH_CUSTOMER_NAME_SUCCESS,payload: customerNames});
