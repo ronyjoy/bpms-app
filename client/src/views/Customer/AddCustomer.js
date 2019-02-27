@@ -1,75 +1,44 @@
+import {
+  Form, Select, Input, Button,DatePicker,TimePicker,AutoComplete,Slider,Radio,Icon
+} from 'antd';
 import React from 'react';
-import { Formik, Field, Form } from 'formik';
-import Button from '@material-ui/core/Button';
-import { LinearProgress } from '@material-ui/core';
-import * as Yup from 'yup'
-import isEmpty from 'lodash/isEmpty';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
 import Alert from 'react-s-alert';
 import { connect } from 'react-redux';
 import {addCustomer} from '../../actions/customerActions'
-
-import {
-	TextField,
-} from 'formik-material-ui';
+import 'antd/dist/antd.css';
  
+const { TextArea } = Input;
 
-const styles = theme => ({
-	root: {
-		display: 'flex',
-		flexWrap: 'wrap',
-	},
-	margin: {
-		margin: theme.spacing.unit,
-	},
-	textField: {
-		flexBasis: 200,
-	},
-	button: {
-		margin: theme.spacing.unit,
-	},
-	input: {
-		display: 'none',
-	},
-});
-
-
-// Async Validation
 class AddCustomer extends React.Component {
 
 	addCustomer = async (data) => {
     this.props.dispatch(addCustomer(data));
 	}
 
-	handleSubmit = (values, actions) => {
- 		this.addCustomer(values);
-		actions.resetForm({ customername: "", contactperson: "", address: "", email: "", phone: "" });
-		actions.setSubmitting(false);
-		return;
-	}
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+				console.log('Received values of form: ', values);
+        this.props.dispatch(addCustomer(values))
+        if(!this.props.loading && this.props.error ==null && this.props.customeradded ) {
+					Alert.info('Customer Saved', {
+							position: 'top-right',
+							effect: 'scale',
+							offset: 80
+							});
+				} 
+      }
+    });
+  }
+
 	
-
-	validationSchema = Yup.object().shape({
-		email: Yup.string()
-			.email('E-mail is not valid!')
-			.required('E-mail is required!'),
-		address: Yup.string()
-			.min(6, 'Address has to be longer than 6 characters!')
-			.required('Address is required!'),
-		customername: Yup.string()
-			.required('Customer Name is required!'),
-		contactperson: Yup.string()
-			.required('Contact Person Name is required!'),
-		phone: Yup.number()
-			.required('phone is required!'),
-	})
-
 
 	render() {
 
-		const { classes,loading, error } = this.props;
-		
+		const { loading, error , customeradded} = this.props;
+		const { getFieldDecorator } = this.props.form;
+
 		if(!loading && error!=null) {
 			Alert.info('Error Saving the Customer', {
 				position: "top-right",
@@ -77,35 +46,66 @@ class AddCustomer extends React.Component {
 				offset: 80
 			});
 		}
-		if(!loading && error ==null) {
-			Alert.info('Customer Saved', {
-					position: 'top-right',
-					effect: 'scale',
-					offset: 80
-					});
-		} 
+		
 		
 		return (
-			<Formik
-				initialValues={{ customername: "", contactperson: "", address: "", email: "", phone: "" }}
-				validationSchema={this.validationSchema}
-				onSubmit={this.handleSubmit}
-				render={x => (
-					<Form>
-						<Field type="text" variant="outlined" className={classNames(classes.margin, classes.textField)} label="Customer Name" name="customername" placeholder="ABC Customer" component={TextField} />
-						<Field type="text" variant="outlined" className={classNames(classes.margin, classes.textField)} label="Contact Person" name="contactperson" placeholder="Contact Person" component={TextField} />
-						<Field type="text" variant="outlined" label="Address" className={classNames(classes.margin, classes.textField)} name="address" placeholder="Address" component={TextField} />
-						<Field type="email" variant="outlined" label="Email" className={classNames(classes.margin, classes.textField)} name="email" placeholder="email@email.com" component={TextField} />
-						<Field type="text" variant="outlined" label="Phone" className={classNames(classes.margin, classes.textField)} name="phone" placeholder="1111111111" component={TextField} />
-						<br />
-						{x.isSubmitting && <LinearProgress />}
-						<br />
-						<Button className={classes.button} type="submit" variant="contained" color="primary" disabled={x.isSubmitting || !isEmpty(x.errors) || !x.dirty} > Submit</Button>
-						<Button className={classes.button} type="reset" variant="contained" color="primary">Reset</Button>
-					</Form >
-				)}
-			/>
-		);
+			
+      <Form layout="inline" onSubmit={this.handleSubmit}>
+        <Form.Item label="Customer Name" >
+          {getFieldDecorator('name', {rules: [{ required: true, message: 'Customer Name' }],})(
+            <Input  />
+          )}
+        </Form.Item>
+      	<Form.Item label="Address">
+				{getFieldDecorator('address', {rules: [{ required: true, message: 'Address' }],})(
+            <TextArea rows={4} />
+          )}
+				</Form.Item>
+				<Form.Item label="Phone" >
+          {getFieldDecorator('phone', {rules: [{ required: true, message: 'Phone' }],})(
+            <Input  />
+          )}
+        </Form.Item>
+        <Form.Item label="Fax">
+					{getFieldDecorator('fax', {rules: [{ required: true, message: 'Fax' }],})(
+          <Input />
+						
+					)}
+        </Form.Item>
+        <Form.Item label="Customer Contact">
+          {getFieldDecorator('contactPerson', {rules: [{ required: true, message: 'Contact Person' }],})(
+            <Input />
+          )}
+        </Form.Item>
+        <Form.Item label="email">
+          {getFieldDecorator('email', {rules: [{ required: true, message: 'Contact Person Phone' }],})(
+            <Input />
+          )}
+        </Form.Item>
+				<Form.Item label="Customer Priority"
+        >
+          {getFieldDecorator('rank')(
+            <Radio.Group defaultValue="AVG" buttonStyle="solid">
+						<Radio.Button value="BAD">BAD</Radio.Button>
+						<Radio.Button value="AVG">AVG</Radio.Button>
+						<Radio.Button value="GOOD">GOOD</Radio.Button>
+						<Radio.Button value="GREAT">GREAT</Radio.Button>
+					</Radio.Group>
+          )}
+        </Form.Item>
+				<Form.Item label="Approved"
+        >
+          {getFieldDecorator('approved')(
+            <Radio.Group defaultValue="false" buttonStyle="solid">
+						<Radio.Button value="false">NO</Radio.Button>
+						<Radio.Button value="true">YES</Radio.Button>
+					</Radio.Group>
+          )}
+        </Form.Item>
+				
+        <Form.Item><Button type="primary" htmlType="submit">Submit</Button></Form.Item>
+      </Form>
+    );
 
 	}
 }
@@ -117,5 +117,5 @@ const mapStateToProps = state => ({
   error: state.addcustomer.error
 });
 
-export default connect(mapStateToProps)( withStyles(styles)(AddCustomer));
+export default connect(mapStateToProps)(Form.create({ name: 'add-customer' })(AddCustomer));
 
