@@ -46,7 +46,6 @@ class AddCustomer extends React.Component {
  		this.addCustomer(values);
 		actions.resetForm({ customername: "", contactperson: "", address: "", email: "", phone: "" });
 		actions.setSubmitting(false);
-		actions.setSubmitting(false);
 		return;
 	}
 	

@@ -3,7 +3,6 @@ import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 const PrivateRoute = ({ component: Component, auth, loading,  ...rest }) => (
-    console.log(auth.email),
     loading === true ? "":
     <Route
         {...rest}

@@ -1,7 +1,7 @@
 import {
-  ADD_CUSTOMER,
-  ADD_CUSTOMER_SUCCESS,
-  ADD_CUSTOMER_FAILURE
+  ADD_ENQUIRY,
+  ADD_ENQUIRY_SUCCESS,
+  ADD_ENQUIRY_FAILURE
 } from "../actions/types";
 const initialState = {
   loading: true,
@@ -11,20 +11,20 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case ADD_CUSTOMER:
+    case ADD_ENQUIRY:
       return {
         ...state,
         loading: true,
         error:null
       };
-    case ADD_CUSTOMER_SUCCESS:
+    case ADD_ENQUIRY_SUCCESS:
       return {
         ...state,
         data: action.payload,
         loading: false,
         error:null
       };
-    case ADD_CUSTOMER_FAILURE:
+    case ADD_ENQUIRY_FAILURE:
       return {
         ...state,
         error: action.error,

@@ -22,18 +22,8 @@ class ListCustomer extends Component {
 
     this.state = {
       columnDefs: [
-        {
-          headerName: "Customer Name",
-          field: "customername",
-          sortable: true,
-          filter: "agTextColumnFilter"
-        },
-        {
-          headerName: "Contact Person",
-          field: "contactperson",
-          sortable: true,
-          filter: "agTextColumnFilter"
-        },
+        { headerName: "Customer Name", field: "customername",sortable: true,filter: "agTextColumnFilter"},
+        { headerName: "Contact Person",field: "contactperson",sortable: true,filter: "agTextColumnFilter"},
         { headerName: "Email", field: "email", filter: "agTextColumnFilter" },
         { headerName: "Phone", field: "phone", filter: "agTextColumnFilter" },
         { headerName: "Address", field: "address" },

@@ -1,11 +1,13 @@
 import {
   FETCH_CUSTOMER,
   FETCH_CUSTOMER_FAILURE,
-  FETCH_CUSTOMER_SUCCESS
+  FETCH_CUSTOMER_SUCCESS,
+  FETCH_CUSTOMER_NAME_SUCCESS
 } from "../actions/types";
 const initialState = {
   loading: true,
   data: {},
+  customerNames:[],
   error: null
 };
 
@@ -20,6 +22,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         data: action.payload,
+        loading: false
+      };
+    case FETCH_CUSTOMER_NAME_SUCCESS:
+      return {
+        ...state,
+        customerNames: action.payload,
         loading: false
       };
     case FETCH_CUSTOMER_FAILURE:
