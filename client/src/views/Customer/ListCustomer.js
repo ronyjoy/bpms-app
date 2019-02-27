@@ -22,12 +22,14 @@ class ListCustomer extends Component {
 
     this.state = {
       columnDefs: [
-        { headerName: "Customer Name", field: "customername",sortable: true,filter: "agTextColumnFilter"},
+        { headerName: "Customer Name", field: "name",sortable: true,filter: "agTextColumnFilter"},
         { headerName: "Contact Person",field: "contactperson",sortable: true,filter: "agTextColumnFilter"},
         { headerName: "Email", field: "email", filter: "agTextColumnFilter" },
         { headerName: "Phone", field: "phone", filter: "agTextColumnFilter" },
+        { headerName: "Phone", field: "fax", filter: "agTextColumnFilter" },
         { headerName: "Address", field: "address" },
-        { headerName: "Status", field: "status" }
+        { headerName: "Status", field: "rank" },
+        { headerName: "Status", field: "approved" }
       ],
       paginationPageSize: 20,
       defaultColDef: {

@@ -9,7 +9,6 @@ import Alert from 'react-s-alert';
 import 'antd/dist/antd.css';
 
 
-const { Option } = Select;
 const { TextArea } = Input;
 
 class AddEnquiry extends React.Component {
@@ -126,4 +125,4 @@ const mapStateToProps = state => ({
 	customerNames:state.listcustomer.customerNames
 });
 
-export default connect(mapStateToProps)(Form.create({ name: 'coordinated' })(AddEnquiry));
+export default connect(mapStateToProps)(Form.create({ name: 'add-enquiry' })(AddEnquiry));

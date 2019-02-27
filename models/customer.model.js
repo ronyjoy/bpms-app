@@ -5,16 +5,14 @@ var Schema = mongoose.Schema;
 
 var customerSchema = new Schema({
   image: String,
-  name: String,
-  viewers: Number,
-  customername: {type: String,index: true, unique: true},
+  name: {type: String,index: true, unique: true},
   email: String,
   contactperson: String,
   phone: String,
   address: String,
   fax: String,
-  rank: Number
-
+  rank: String,
+  approved: Boolean
 });
 
 let CustomerModel = mongoose.model("customers", customerSchema);
