@@ -21,13 +21,7 @@ class AddCustomer extends React.Component {
       if (!err) {
 				console.log('Received values of form: ', values);
         this.props.dispatch(addCustomer(values))
-        if(!this.props.loading && this.props.error ==null && this.props.customeradded ) {
-					Alert.info('Customer Saved', {
-							position: 'top-right',
-							effect: 'scale',
-							offset: 80
-							});
-				} 
+        
       }
     });
   }
@@ -46,7 +40,13 @@ class AddCustomer extends React.Component {
 				offset: 80
 			});
 		}
-		
+		if(!loading && error ==null && customeradded ) {
+			Alert.info('Customer Saved', {
+					position: 'top-right',
+					effect: 'scale',
+					offset: 80
+					});
+		} 
 		
 		return (
 			
