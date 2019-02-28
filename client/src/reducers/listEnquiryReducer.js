@@ -4,7 +4,7 @@ import {
   FETCH_ENQUIRY_FAILURE
 } from "../actions/types";
 const initialState = {
-  loading: true,
+  processing: true,
   data: {},
   error: null
 };
@@ -14,19 +14,19 @@ export default function(state = initialState, action) {
     case FETCH_ENQUIRY:
       return {
         ...state,
-        loading: true
+        processing: true
       };
     case FETCH_ENQUIRY_SUCCESS:
       return {
         ...state,
         data: action.payload,
-        loading: false
+        processing: false
       };
     case FETCH_ENQUIRY_FAILURE:
       return {
         ...state,
         error: action.error,
-        loading: false
+        processing: false
       };
     default:
       return state;

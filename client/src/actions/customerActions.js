@@ -1,6 +1,6 @@
 import axios from "axios";
-import {map,values} from 'lodash';
-import {FETCH_CUSTOMER,FETCH_CUSTOMER_SUCCESS,FETCH_CUSTOMER_FAILURE,ADD_CUSTOMER,ADD_CUSTOMER_FAILURE,ADD_CUSTOMER_SUCCESS,FETCH_CUSTOMER_NAME_SUCCESS} from "./types";
+import {FETCH_CUSTOMER,FETCH_CUSTOMER_SUCCESS,FETCH_CUSTOMER_FAILURE,ADD_CUSTOMER,ADD_CUSTOMER_FAILURE,
+  ADD_CUSTOMER_SUCCESS,FETCH_CUSTOMER_NAME_SUCCESS,FETCH_CUSTOMER_NAME, FETCH_CUSTOMER_NAME_FAILURE} from "./types";
 
 
 export const fetchCustomer = () => async dispatch => {
@@ -16,7 +16,7 @@ export const fetchCustomer = () => async dispatch => {
 };
 
 export const fetchCustomerNames = () => async dispatch => {
-  dispatch({ type: FETCH_CUSTOMER });
+  dispatch({ type: FETCH_CUSTOMER_NAME });
   try {
     const res = await axios.get("/api/customer");
     var customerNames = [];
@@ -27,7 +27,7 @@ export const fetchCustomerNames = () => async dispatch => {
     dispatch({type: FETCH_CUSTOMER_NAME_SUCCESS,payload: customerNames});
   } catch (err) {
     // Update error in reducer on failure
-    dispatch({type: FETCH_CUSTOMER_FAILURE, error: err});
+    dispatch({type: FETCH_CUSTOMER_NAME_FAILURE, error: err});
   }
 };
 

@@ -4,10 +4,12 @@ import listCustomerReducer from './listCustomerReducer';
 import addCustomerReducer from './addCustomerReducer';
 import listEnquiryReducer from './listEnquiryReducer';
 import addEnquiryReducer from './addEnquiryReducer';
+import listCustomerNameReducer from './listCustomerNameReducer';
 
 export default combineReducers({
     auth:authReducer,
     listcustomer:listCustomerReducer,
+    listcustomernames:listCustomerNameReducer,
     addcustomer:addCustomerReducer,
     listenquiry:listEnquiryReducer,
     addenquiry:addEnquiryReducer

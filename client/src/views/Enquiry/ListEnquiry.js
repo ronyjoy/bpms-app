@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import "ag-grid-community/dist/styles/ag-grid.css";
-import "ag-grid-community/dist/styles/ag-theme-material.css";
+import "ag-grid-community/dist/styles/ag-theme-balham.css";
 import axios from 'axios';
 import { connect } from "react-redux";
 import { fetchEnquries } from "../../actions/enquiryActions";
@@ -67,18 +67,18 @@ class ListEnquiry extends Component {
 }
 
   render() {
-    const { loading, error, enquiries } = this.props;
+    const { processing, error, enquiries } = this.props;
     
-    if (loading) {
+    if (processing) {
       return <div>Loading...</div>;
     }
     if (error) {
       return <div>Error! {error.message}</div>;
     }
-    if (!loading) {
+    if (!processing && !error && enquiries) {
     return (
       <div
-        className="ag-theme-material"
+        className="ag-theme-balham"
       >
          <AgGridReact
             columnDefs={this.state.columnDefs}
@@ -104,7 +104,7 @@ class ListEnquiry extends Component {
 }
 
 const mapStateToProps = state => ({
-  loading: state.listenquiry.loading,
+  processing: state.listenquiry.processing,
   enquiries: state.listenquiry.data,
   error: state.listenquiry.error
 });
