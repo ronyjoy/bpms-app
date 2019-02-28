@@ -118,11 +118,11 @@ class AddEnquiry extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  addEnquiryProcessing: state.addenquiry.loading,
+  addEnquiryProcessing: state.addenquiry.processing,
   enquiryadded: state.addenquiry.data,
 	addEnquiryError: state.addenquiry.error,
-	customerLoading:state.listcustomer.loading,
-	customerNames:state.listcustomer.customerNames
+	customerLoading:state.listcustomer.processing,
+	customerNames:state.listcustomernames.data
 });
 
 export default connect(mapStateToProps)(Form.create({ name: 'add-enquiry' })(AddEnquiry));

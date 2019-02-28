@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
-import "ag-grid-community/dist/styles/ag-theme-material.css";
+import "ag-grid-community/dist/styles/ag-theme-balham.css";
 import axios from "axios";
 import { connect } from "react-redux";
 import { fetchCustomer } from "../../actions/customerActions";
@@ -66,17 +66,17 @@ class ListCustomer extends Component {
   };
 
   render() {
-    const { loading, error, customers } = this.props;
-    console.log(loading);
-    if (loading) {
+    const { processing, error, customers } = this.props;
+    console.log(processing);
+    if (processing) {
       return <div>Loading...</div>;
     }
     if (error) {
       return <div>Error! {error.message}</div>;
     }
-    if (!loading) {
+    if (!processing) {
       return (
-        <div className="ag-theme-material">
+        <div className="ag-theme-balham">
           <AgGridReact
             columnDefs={this.state.columnDefs}
             autoGroupColumnDef={this.state.autoGroupColumnDef}
@@ -102,7 +102,7 @@ class ListCustomer extends Component {
 }
 
 const mapStateToProps = state => ({
-  loading: state.listcustomer.loading,
+  processing: state.listcustomer.processing,
   customers: state.listcustomer.data,
   error: state.listcustomer.error
 });

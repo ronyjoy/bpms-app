@@ -18,7 +18,7 @@ const PrivateRoute = ({ component: Component, auth, loading,  ...rest }) => (
 );
 
 const mapStateToProps = state => ({ 
-    loading: state.auth.loading,
+    loading: state.auth.processing,
     auth:state.auth.data,
     error:state.auth.error
 });

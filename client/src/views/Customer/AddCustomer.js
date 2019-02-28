@@ -30,17 +30,17 @@ class AddCustomer extends React.Component {
 
 	render() {
 
-		const { loading, error , customeradded} = this.props;
+		const { processing, error , customeradded} = this.props;
 		const { getFieldDecorator } = this.props.form;
 
-		if(!loading && error!=null) {
+		if(!processing && error!=null) {
 			Alert.info('Error Saving the Customer', {
 				position: "top-right",
 				effect: "scale",
 				offset: 80
 			});
 		}
-		if(!loading && error ==null && customeradded ) {
+		if(!processing && error ==null && customeradded ) {
 			Alert.info('Customer Saved', {
 					position: 'top-right',
 					effect: 'scale',
@@ -112,7 +112,7 @@ class AddCustomer extends React.Component {
 
 
 const mapStateToProps = state => ({
-  loading: state.addcustomer.loading,
+  processing: state.addcustomer.processing,
   customeradded: state.addcustomer.data,
   error: state.addcustomer.error
 });
