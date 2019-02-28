@@ -8,7 +8,8 @@
     "npm": "6.5.0"
   },
   "scripts": {
-    "start": "babel-node index.js",
+    "build": "babel index.js -d dist",
+    "start": "npm run build && node dist/index.js",
     "server": "nodemon --exec babel-node index.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
