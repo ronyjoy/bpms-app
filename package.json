@@ -8,7 +8,12 @@
     "npm": "6.5.0"
   },
   "scripts": {
-    "start": "nodemon --exec babel-node index.js",
+    "clean":"rm -rf dist && mkdir dist",
+    "clean-windows":"mkdir dist",
+    "build-server":"babel . --ignore node_modules,log,dist,client,.vscode,.git  -d dist -s",
+    "build": "npm run clean && npm run build-server",
+    "build-windows": "npm run build-server",
+    "start": "node ./dist/index.js",
     "server": "nodemon --exec babel-node index.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
