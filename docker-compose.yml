@@ -1,0 +1,26 @@
+version: "3"
+services:
+  server:
+    container_name: server
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: "npm run start:server"
+    ports:
+      - "3001:3000"
+
+  client:
+    container_name: client
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: "npm run start:client"
+    volumes:
+      - ./client/src:/usr/src/app/client/src
+      - ./client/public:/usr/src/app/client/public
+    ports:
+      - "3000:3000"
+    links:
+      - server
+    depends_on:
+      - server
