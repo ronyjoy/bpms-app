@@ -47,7 +47,7 @@ https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/
 
 ### How to modify
 
-Create pull request and needs approval to merge.
+Create pull request and needs approval to merge. There should be atleast one person approval to merge it to development
 
 
 
