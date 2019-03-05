@@ -1,26 +1,44 @@
 version: "3"
 services:
-  server:
-    container_name: server
-    build:
-      context: .
-      dockerfile: Dockerfile
-    command: "npm run start:server"
-    ports:
-      - "3001:3000"
-
   client:
-    container_name: client
     build:
-      context: .
-      dockerfile: Dockerfile
-    command: "npm run start:client"
-    volumes:
-      - ./client/src:/usr/src/app/client/src
-      - ./client/public:/usr/src/app/client/public
+      context: ./client
+    restart: always
+    container_name: bpms-client
     ports:
       - "3000:3000"
+    volumes:
+      - ./client:/client
+      - /client/node_modules
     links:
-      - server
-    depends_on:
-      - server
+      - api
+    networks:
+      - webappnetwork
+  api:
+    build:
+      context: .
+    restart: always
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./api:/api
+      - /api/node_modules
+    # depends_on:
+    #   - mongodb
+    networks:
+      - webappnetwork
+  # mongodb:
+  #   image: mongo
+  #   restart: always
+  #   container_name: mongodb
+  #   volumes:
+  #     - ./data-node:/data/db
+  #   ports:
+  #     - 27017:27017
+  #   command: mongod --noauth --smallfiles
+  #   networks:
+  #     - webappnetwork
+networks:
+    webappnetwork:
+        driver: bridge
+          
