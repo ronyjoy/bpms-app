@@ -21,7 +21,7 @@ passport.use(new Auth0Strategy({
     domain: keys.domain,
     clientID: keys.auth0ClientID,
     clientSecret: keys.auth0ClientSecret,
-    callbackURL: '/callback'
+    callbackURL: '/api/auth/callback'
 }, async (accessToken, refreshToken, extraParams, profile, done) => {
     log.info ('loggedin user information %o,%s,%s,%o',accessToken,refreshToken,extraParams,profile);
     log.info('finding user by email %s',profile._json.email);

@@ -67,11 +67,11 @@ class App extends Component {
           <Switch>
             <Redirect exact from="/" to="/login/" />
             <Route exact path="/login" name="Login Page" component={Login} />
-            <PrivateRoute path="/dashboard/" component={DefaultLayout} />
-            <PrivateRoute path="/dashboard/addcustomer/" component={AddCustomer} />
-            <PrivateRoute path="/dashboard/customers/"   component={ListCustomer} />
-            <PrivateRoute path="/dashboard/addenquiry/"   component={AddEnquiry} />
-            <PrivateRoute path="/dashboard/enquiries/"   component={ListEnquiry} />
+            <Route path="/dashboard/" component={DefaultLayout} />
+            <Route path="/dashboard/addcustomer/" component={AddCustomer} />
+            <Route path="/dashboard/customers/"   component={ListCustomer} />
+            <Route path="/dashboard/addenquiry/"   component={AddEnquiry} />
+            <Route path="/dashboard/enquiries/"   component={ListEnquiry} />
             <Route exact path="/401" name="Page 401" component={Page401} />
             <Route exact path="/404" name="Page 404" component={Page404} />
             <Route exact path="/500" name="Page 500" component={Page500} />

@@ -35,13 +35,13 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 //routes
-app.use("", authRoutes);
+app.use("/api/auth", authRoutes);
 app.use("/api/customer", customer);
 app.use("/api/enquiry", enquiry);
 app.use("/api/organizations", organization);
 
 if (process.env.NODE_ENV !== "local") {
-  // Static files
+  // Static files 
   const CLIENT_BUILD_PATH = path.join(__dirname, "../../client/build");
   app.use(express.static(CLIENT_BUILD_PATH));
   app.get("*", (req, res) => {
