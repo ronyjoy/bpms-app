@@ -1,17 +1,22 @@
 import {
-  Form, Select, Input, Button,DatePicker,TimePicker,AutoComplete,Slider,Radio,Icon
+  message,Form, Select, Input, Button,DatePicker,TimePicker,AutoComplete,Slider,Radio,Icon
 } from 'antd';
 import React from 'react';
 import { connect } from 'react-redux';
 import {addEnquiry} from '../../actions/enquiryActions'
 import {fetchCustomerNames} from '../../actions/customerActions'
-import Alert from 'react-s-alert';
 import 'antd/dist/antd.css';
 
 
 const { TextArea } = Input;
 
+const success = () => {
+  message.success('enquiry saved');
+};
+
+
 class AddEnquiry extends React.Component {
+  
 
 	componentDidMount() {
     this.props.dispatch(fetchCustomerNames());
@@ -28,7 +33,7 @@ class AddEnquiry extends React.Component {
       if (!err) {
 				console.log('Received values of form: ', values);
         this.props.dispatch(addEnquiry(values))
-        
+        success();
       }
     });
   }
@@ -40,14 +45,6 @@ class AddEnquiry extends React.Component {
     if(!customerLoading) {
       dataSource = customerNames;
     }
-    if(!addEnquiryProcessing && addEnquiryError ==null && enquiryadded) {
-			Alert.info('Enquiry Saved', {
-					position: 'top-right',
-					effect: 'scale',
-					offset: 80
-					});
-		} 
-
 	
     return (
       <Form layout="inline" onSubmit={this.handleSubmit}>

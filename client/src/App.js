@@ -6,7 +6,6 @@ import "./App.scss";
 import PrivateRoute from "./PrivateRoute";
 import { connect } from "react-redux";
 import {fetchUser} from "./actions/authActions";
-import Alert from "react-s-alert";
 const loading = () => (
   <div className="animated fadeIn pt-3 text-center">Loading...</div>
 );
@@ -77,10 +76,7 @@ class App extends Component {
             <Route exact path="/500" name="Page 500" component={Page500} />
           </Switch>
         </BrowserRouter>
-        <div>
-          <span>{this.props.children}</span>
-          <Alert stack={{ limit: 3 }} />
-        </div>
+        
       </div>
     );
   }
