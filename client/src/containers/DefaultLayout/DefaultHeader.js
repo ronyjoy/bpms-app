@@ -53,7 +53,7 @@ class DefaultHeader extends Component {
               <DropdownItem><i className="fa fa-tasks"></i> Tasks<Badge color="danger">42</Badge></DropdownItem>
               <DropdownItem header tag="div" className="text-center"><strong>Settings</strong></DropdownItem>
               <DropdownItem divider />
-              <DropdownItem  href="/api/logout" tag ="a" active><i className="fa fa-lock"></i> Logout</DropdownItem>
+              <DropdownItem  href="/auth/logout" tag ="a" active><i className="fa fa-lock"></i> Logout</DropdownItem>
             </DropdownMenu>
           </AppHeaderDropdown>
         </Nav>

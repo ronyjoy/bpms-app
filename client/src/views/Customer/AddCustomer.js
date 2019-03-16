@@ -1,13 +1,17 @@
 import {
-  Form, Select, Input, Button,DatePicker,TimePicker,AutoComplete,Slider,Radio,Icon
+  message,Form, Select, Input, Button,DatePicker,TimePicker,AutoComplete,Slider,Radio,Icon
 } from 'antd';
 import React from 'react';
-import Alert from 'react-s-alert';
 import { connect } from 'react-redux';
 import {addCustomer} from '../../actions/customerActions'
 import 'antd/dist/antd.css';
  
 const { TextArea } = Input;
+
+const success = () => {
+  message.success('customer saved');
+};
+
 
 class AddCustomer extends React.Component {
 
@@ -21,7 +25,7 @@ class AddCustomer extends React.Component {
       if (!err) {
 				console.log('Received values of form: ', values);
         this.props.dispatch(addCustomer(values))
-        
+        success();
       }
     });
   }
@@ -33,21 +37,6 @@ class AddCustomer extends React.Component {
 		const { processing, error , customeradded} = this.props;
 		const { getFieldDecorator } = this.props.form;
 
-		if(!processing && error!=null) {
-			Alert.info('Error Saving the Customer', {
-				position: "top-right",
-				effect: "scale",
-				offset: 80
-			});
-		}
-		if(!processing && error ==null && customeradded ) {
-			Alert.info('Customer Saved', {
-					position: 'top-right',
-					effect: 'scale',
-					offset: 80
-					});
-		} 
-		
 		return (
 			
       <Form layout="inline" onSubmit={this.handleSubmit}>

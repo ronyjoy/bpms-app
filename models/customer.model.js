@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 
 var customerSchema = new Schema({
   image: String,
-  name: {type: String,index: true, unique: true},
+  name: {type: String, unique: true},
   email: String,
   contactperson: String,
   phone: String,
@@ -22,8 +22,8 @@ CustomerModel.getAll = () => {
   return CustomerModel.find({});
 };
 
-CustomerModel.add = org => {
-  return org.save();
+CustomerModel.add = customer => {
+  return customer.save();
 };
 
 CustomerModel.update = (id, detailsToUpdate) => {

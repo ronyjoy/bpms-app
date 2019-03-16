@@ -12,7 +12,7 @@ class Login extends Component {
               <CardGroup>
                 <Card className="p-4"  >
                   <CardBody>
-                    <Form action="/auth/auth0">
+                    <Form action="/api/auth/auth0">
           
                       <Row>
                         <Col xs="6">

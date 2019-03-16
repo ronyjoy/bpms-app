@@ -5,7 +5,7 @@ import logger from "../core/logger/app.logger";
 
 const router = express.Router();
 
-router.get("/api/logout", (req, res) => {
+router.get("/logout", (req, res) => {
   req.user = null;
   req.logout();
   res.redirect("/"); //Inside a callback… bulletproof!
@@ -33,7 +33,7 @@ router.get(
 );
 
 router.get(
-  "/auth/auth0",
+  "/auth0",
   passport.authenticate("auth0", { failureRedirect: "/login" }),
   function(req, res) {
     res.redirect("/");
@@ -47,7 +47,7 @@ router.get(
   }
 );
 
-router.get("/api/current_user", (req, res) => {
+router.get("/current_user", (req, res) => {
   res.send(req.user);
 });
 

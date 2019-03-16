@@ -17,8 +17,8 @@ controller.getAll = async (req, res) => {
 controller.add = async (req, res) => {
   try {
     let customer = new Customer(req.body);
+    logger.info("adding Customer..." + customer);
     customer = await Customer.add(customer);
-    logger.info("adding Customer...");
     res.send(customer);
   } catch (err) {
     logger.error("Error adding customer" + err);
