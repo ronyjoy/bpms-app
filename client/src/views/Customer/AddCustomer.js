@@ -8,16 +8,11 @@ import 'antd/dist/antd.css';
  
 const { TextArea } = Input;
 
-const success = () => {
-  message.success('customer saved');
-};
-
-
 class AddCustomer extends React.Component {
 
 	addCustomer = async (data) => {
     this.props.dispatch(addCustomer(data));
-	}
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -25,7 +20,6 @@ class AddCustomer extends React.Component {
       if (!err) {
 				console.log('Received values of form: ', values);
         this.props.dispatch(addCustomer(values))
-        success();
       }
     });
   }
@@ -34,10 +28,9 @@ class AddCustomer extends React.Component {
 
 	render() {
 
-		const { processing, error , customeradded} = this.props;
-		const { getFieldDecorator } = this.props.form;
-
-		return (
+    const { getFieldDecorator } = this.props.form;
+ 
+ 		return (
 			
       <Form layout="inline" onSubmit={this.handleSubmit}>
         <Form.Item label="Customer Name" >
@@ -74,7 +67,7 @@ class AddCustomer extends React.Component {
 				<Form.Item label="Customer Priority"
         >
           {getFieldDecorator('rank')(
-            <Radio.Group defaultValue="AVG" buttonStyle="solid">
+            <Radio.Group initialValue="AVG" buttonStyle="solid">
 						<Radio.Button value="BAD">BAD</Radio.Button>
 						<Radio.Button value="AVG">AVG</Radio.Button>
 						<Radio.Button value="GOOD">GOOD</Radio.Button>
@@ -85,7 +78,7 @@ class AddCustomer extends React.Component {
 				<Form.Item label="Approved"
         >
           {getFieldDecorator('approved')(
-            <Radio.Group defaultValue="false" buttonStyle="solid">
+            <Radio.Group initialValue="false" buttonStyle="solid">
 						<Radio.Button value="false">NO</Radio.Button>
 						<Radio.Button value="true">YES</Radio.Button>
 					</Radio.Group>
@@ -103,7 +96,8 @@ class AddCustomer extends React.Component {
 const mapStateToProps = state => ({
   processing: state.addcustomer.processing,
   customeradded: state.addcustomer.data,
-  error: state.addcustomer.error
+  error: state.addcustomer.error,
+  saved: state.addcustomer.saved
 });
 
 export default connect(mapStateToProps)(Form.create({ name: 'add-customer' })(AddCustomer));

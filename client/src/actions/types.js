@@ -16,3 +16,7 @@ export const FETCH_ENQUIRY_FAILURE ='fetch_enquiry_failure';
 export const ADD_ENQUIRY ='add_enquiry';
 export const ADD_ENQUIRY_SUCCESS ='add_enquiry_success';
 export const ADD_ENQUIRY_FAILURE ='add_enquiry_failure';
+export const ADD_ERROR ='add_error';
+export const REMOVE_ERROR ='remove_error';
+export const ADD_SUCCESS ='add_success';
+export const REMOVE_SUCCESS ='remove_success';

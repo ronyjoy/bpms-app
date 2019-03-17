@@ -10,10 +10,6 @@ import 'antd/dist/antd.css';
 
 const { TextArea } = Input;
 
-const success = () => {
-  message.success('enquiry saved');
-};
-
 
 class AddEnquiry extends React.Component {
   
@@ -33,7 +29,6 @@ class AddEnquiry extends React.Component {
       if (!err) {
 				console.log('Received values of form: ', values);
         this.props.dispatch(addEnquiry(values))
-        success();
       }
     });
   }
@@ -88,7 +83,7 @@ class AddEnquiry extends React.Component {
           )}
         </Form.Item>
         <Form.Item label="Customer Contact email">
-          {getFieldDecorator('contactEmail', {rules: [{ required: true, message: 'Contact Person Phone' }],})(
+          {getFieldDecorator('contactEmail', {rules: [{ required: true, message: 'Contact Contact Email' }],})(
             <Input />
           )}
         </Form.Item>
@@ -100,7 +95,7 @@ class AddEnquiry extends React.Component {
 				<Form.Item label="Enquiry Priority"
         >
           {getFieldDecorator('priority')(
-            <Radio.Group defaultValue="c" buttonStyle="solid">
+            <Radio.Group initialValue="c" buttonStyle="solid">
 						<Radio.Button value="LOW">LOW</Radio.Button>
 						<Radio.Button value="MED">MED</Radio.Button>
 						<Radio.Button value="HIGH">HIGH</Radio.Button>
