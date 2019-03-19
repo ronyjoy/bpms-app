@@ -83,7 +83,7 @@ class AddEnquiry extends React.Component {
           )}
         </Form.Item>
         <Form.Item label="Customer Contact email">
-          {getFieldDecorator('contactEmail', {rules: [{ required: true, message: 'Contact Contact Email' }],})(
+          {getFieldDecorator('contactEmail', {rules: [{ required: true, message: 'Customer Contact Email' }],})(
             <Input />
           )}
         </Form.Item>
@@ -113,7 +113,7 @@ const mapStateToProps = state => ({
   addEnquiryProcessing: state.addenquiry.processing,
   enquiryadded: state.addenquiry.data,
 	addEnquiryError: state.addenquiry.error,
-	customerLoading:state.listcustomer.processing,
+	customerLoading:state.listcustomernames.processing,
 	customerNames:state.listcustomernames.data
 });
 
