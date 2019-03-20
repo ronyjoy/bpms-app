@@ -17,6 +17,10 @@ controller.getAll = async (req, res) => {
 
 controller.addEnquiry = async (req, res) => {
     let enquiry = new Enquiry(req.body);
+    const enq_exp_date = enquiry.enq_date.split(',');
+    enquiry.enq_date = enq_exp_date[0];
+    enquiry.exp_date = enq_exp_date[1];
+
     try {
 
         const addedEnquiry = await Enquiry.addEnquiry(enquiry);

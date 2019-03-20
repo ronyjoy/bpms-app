@@ -7,6 +7,7 @@ import "ag-grid-community/dist/styles/ag-theme-balham.css";
 import axios from 'axios';
 import { connect } from "react-redux";
 import { fetchEnquries } from "../../actions/enquiryActions";
+import { Spin } from "antd";
 
 class ListEnquiry extends Component {
 
@@ -70,7 +71,7 @@ class ListEnquiry extends Component {
     const { processing, error, enquiries } = this.props;
     
     if (processing) {
-      return <div>Loading...</div>;
+      return  <Spin size="large" />;
     }
     if (error) {
       return <div>Error! {error.message}</div>;

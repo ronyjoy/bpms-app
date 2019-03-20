@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { message,Spin } from "antd";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-balham.css";
@@ -69,7 +69,7 @@ class ListCustomer extends Component {
     const { processing, error, customers } = this.props;
     console.log(processing);
     if (processing) {
-      return <div>Loading...</div>;
+      return  <Spin size="large" />;
     }
     if (error) {
       return <div>Error! {error.message}</div>;

@@ -9,31 +9,45 @@ import 'antd/dist/antd.css';
 
 
 const { TextArea } = Input;
+const { MonthPicker, RangePicker } = DatePicker;
+
 
 
 class AddEnquiry extends React.Component {
-  
 
-	componentDidMount() {
+  
+  
+  componentDidMount() {
     this.props.dispatch(fetchCustomerNames());
 	}
 	
 	saveEnquiry(data) {
-		this.props.dispatch(addEnquiry(data))
+    this.props.dispatch(addEnquiry(data))
 	}
-
-
+  
+  
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-				console.log('Received values of form: ', values);
+        console.log('Received values of form: ', values);
         this.props.dispatch(addEnquiry(values))
       }
     });
   }
-
+  
   render() {
+    const formItemLayout = {
+      labelCol: {
+        xs: { span: 24 },
+        sm: { span: 5 },
+      },
+      wrapperCol: {
+        xs: { span: 24 },
+        sm: { span: 12 },
+      },
+    };
+    
     let dataSource = ['loading data'];
 		const { getFieldDecorator } = this.props.form;
     const { customerNames, customerLoading,addEnquiryProcessing, enquiryadded,addEnquiryError } = this.props;
@@ -42,23 +56,18 @@ class AddEnquiry extends React.Component {
     }
 	
     return (
-      <Form layout="inline" onSubmit={this.handleSubmit}>
-        <Form.Item label="Enquiry Date" >
-          {getFieldDecorator('enq_date', {rules: [{ required: true, message: 'Enquiry date' }],})(
-            <DatePicker  />
-          )}
-        </Form.Item>
-      	<Form.Item label="Time Received">
+      <Form layout="vertical"  onSubmit={this.handleSubmit}>
+      	<Form.Item label="Time Received" {...formItemLayout} >
 				{getFieldDecorator('enq_time', {rules: [{ required: true, message: 'Enquiry time' }],})(
             <TimePicker />
           )}
 				</Form.Item>
-				<Form.Item label="Expiry Date" >
-          {getFieldDecorator('exp_date', {rules: [{ required: true, message: 'Expiry date' }],})(
-            <DatePicker  />
+        <Form.Item  {...formItemLayout}  label="Enquiry Recd/Exp Date" >
+          {getFieldDecorator('enq_date', {rules: [{ type: 'array', required: true, message: 'Select the enq recd and exp date!' }],})(
+            <RangePicker />
           )}
         </Form.Item>
-        <Form.Item label="Customer">
+		   <Form.Item label="Customer" {...formItemLayout} >
 					{getFieldDecorator('customer', {rules: [{ required: true, message: 'Customer!' }],})(
             <AutoComplete
 							className="global-search"
@@ -72,28 +81,27 @@ class AddEnquiry extends React.Component {
 						
 					)}
         </Form.Item>
-        <Form.Item label="Customer Contact">
+        <Form.Item label="Customer Contact" {...formItemLayout}>
           {getFieldDecorator('contactPerson', {rules: [{ required: true, message: 'Contact Person' }],})(
             <Input />
           )}
         </Form.Item>
-        <Form.Item label="Customer Contact Phone">
+        <Form.Item label="Customer Contact Phone" {...formItemLayout}>
           {getFieldDecorator('contactPhone', {rules: [{ required: true, message: 'Contact Person Phone' }],})(
             <Input />
           )}
         </Form.Item>
-        <Form.Item label="Customer Contact email">
+        <Form.Item label="Customer Contact email" {...formItemLayout}>
           {getFieldDecorator('contactEmail', {rules: [{ required: true, message: 'Customer Contact Email' }],})(
             <Input />
           )}
         </Form.Item>
-        <Form.Item label="Description">
+        <Form.Item label="Description" {...formItemLayout}>
           {getFieldDecorator('description', {rules: [{ required: true, message: 'Enquiry Description' }],})(
             <TextArea rows={4} />
           )}
         </Form.Item>
-				<Form.Item label="Enquiry Priority"
-        >
+				<Form.Item label="Enquiry Priority" {...formItemLayout} >
           {getFieldDecorator('priority')(
             <Radio.Group initialValue="c" buttonStyle="solid">
 						<Radio.Button value="LOW">LOW</Radio.Button>
@@ -103,7 +111,7 @@ class AddEnquiry extends React.Component {
           )}
         </Form.Item>
 				
-        <Form.Item><Button type="primary" htmlType="submit">Submit</Button></Form.Item>
+        <Form.Item {...formItemLayout}><Button type="primary" htmlType="submit">Submit</Button></Form.Item>
       </Form>
     );
   }

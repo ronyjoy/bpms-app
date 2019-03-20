@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import { message } from "antd";
+import { message,Spin } from "antd";
 // import { renderRoutes } from 'react-router-config';
 import Loadable from "react-loadable";
 import "./App.scss";
@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import { fetchUser } from "./actions/authActions";
 import {REMOVE_ERROR,REMOVE_SUCCESS} from './actions/types.js';
 const loading = () => (
-  <div className="animated fadeIn pt-3 text-center">Loading...</div>
+  <Spin size="large" />
 );
 
 // Containers
