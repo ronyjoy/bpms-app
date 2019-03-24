@@ -5,7 +5,7 @@ module.exports = {
   auth0ClientID: 'zp7SwKT5JMqB7Q7c9Z3mFOpBM2ew9rft',
   googleClientSecret: 'yZ5v7ugeWqai35Zh5TOuN4GM',
   auth0ClientSecret: '3OTppYl5IFYGKy-QhxS6SzIyrqjOGypjAKAlZhL4QGme4LkIPwWZiMbopw83Rs6v',
-  mongoURI: 'mongodb://bpms:Tenergy_80@ds241578.mlab.com:41578/bpms',
-  mongoURI_service: 'mongodb://bpms:bpms@localhost:27017/bpms',
+  mongoURI_service: 'mongodb://bpms:Tenergy_80@ds241578.mlab.com:41578/bpms',
+  mongoURI: 'mongodb://bpms:bpms@localhost:27017/bpms',
   cookieKey: 'ouhoneuho890g23ypsnttnbdxhtcndrlgaodeucroheunho-lieljbxsaehduigrlasoeuhsnthosehud'
 }

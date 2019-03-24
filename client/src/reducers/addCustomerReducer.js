@@ -5,8 +5,9 @@ import {
 } from "../actions/types";
 const initialState = {
   processing: true,
-  data: {},
-  error: null
+  data: null,
+  error: null,
+  saved:null,
 };
 
 export default function(state = initialState, action) {
@@ -23,13 +24,7 @@ export default function(state = initialState, action) {
         ...state,
         data: action.payload,
         processing: false,
-        error:null
-      };
-    case ADD_CUSTOMER_FAILURE:
-      return {
-        ...state,
-        error: action.error,
-        processing: false
+        saved:true
       };
     default:
       return state;

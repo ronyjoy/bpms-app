@@ -1,6 +1,6 @@
 import axios from "axios";
-import {FETCH_CUSTOMER,FETCH_CUSTOMER_SUCCESS,FETCH_CUSTOMER_FAILURE,ADD_CUSTOMER,ADD_CUSTOMER_FAILURE,
-  ADD_CUSTOMER_SUCCESS,FETCH_CUSTOMER_NAME_SUCCESS,FETCH_CUSTOMER_NAME, FETCH_CUSTOMER_NAME_FAILURE} from "./types";
+import {FETCH_CUSTOMER,FETCH_CUSTOMER_SUCCESS,ADD_CUSTOMER,ADD_SUCCESS,
+  ADD_CUSTOMER_SUCCESS,FETCH_CUSTOMER_NAME_SUCCESS,FETCH_CUSTOMER_NAME, ADD_ERROR,FETCH_CUSTOMER_FAILURE,FETCH_CUSTOMER_NAME_FAILURE} from "./types";
 
 
 export const fetchCustomer = () => async dispatch => {
@@ -38,9 +38,8 @@ export const addCustomer = values => async dispatch => {
   try{
     const res = await axios.post("/api/customer", values);
     dispatch({ type: ADD_CUSTOMER_SUCCESS, payload: res.data });
+    dispatch({type: ADD_SUCCESS, success: {message:"customer added"}});
   } catch (err) {
-    dispatch({type: ADD_CUSTOMER_FAILURE, error: {error:{message:"Duplicate Customer"}}});
-    // Update error in reducer on failure
-    console.log(err);
+    dispatch({type: ADD_ERROR, error: {message : "customer not added: duplicate customer" } });
   }
 };

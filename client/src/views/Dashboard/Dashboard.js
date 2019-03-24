@@ -1,5 +1,6 @@
 import React, { Component} from 'react';
 import { Bar, Line } from 'react-chartjs-2';
+import { Spin } from "antd";
 import {
   ButtonDropdown,
   ButtonGroup,
@@ -239,7 +240,7 @@ class Dashboard extends Component {
     });
   }
 
-  loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
+  loading = () =>  <Spin size="large" />
 
   render() {
 
