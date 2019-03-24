@@ -65,6 +65,8 @@ See also the list of [contributors](https://github.com/ronyjoy/bpms-app/graphs/c
 ## License
 Proprietary software
 
+## building docker image
+docker build -t bpms .
 
 ## Heroku Production deployement
 
