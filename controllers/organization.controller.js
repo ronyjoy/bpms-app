@@ -27,14 +27,14 @@ controller.getByName = async (req, res) => {
 };
 
 controller.getByNameAndEmpEmail = async (req, res) => {
+  logger.info("get Org by orgname and employee email");
   try {
-    const orgName = req.params.name;
+    const orgName = req.params.org;
     const empEmail = req.params.email;
     const organizations = await Organization.getByNameAndEmpEmail(
       orgName,
       empEmail
     );
-    logger.info("sending all Organizations...");
     res.send(organizations);
   } catch (err) {
     logger.error("Error in getting organizations- " + err);
