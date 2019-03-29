@@ -7,7 +7,7 @@ const PrivateRoute = ({ component: Component, auth, loading,  ...rest }) => (
     <Route
         {...rest}
         render={props =>
-            auth.email === undefined ? (
+            auth.email === undefined && process.env.NODE_ENV === "production"  ? (
                 <Redirect to="/login" />
             ) : (
                     <Component {...props} />
